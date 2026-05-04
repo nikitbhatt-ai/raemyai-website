@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog Post — Raemy AI</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1F3A; --navy-mid: #152E52; --navy-light: #1E3D6B;
+    --green: #2D6A4F; --green-mid: #40916C; --green-light: #74C69D;
+    --green-pale: #D8F3DC; --cream: #F8F6F1; --white: #FFFFFF;
+    --gray-100: #F4F4F2; --gray-200: #E8E8E4; --gray-400: #9A9A94;
+    --gray-600: #5C5C58; --gray-800: #2C2C2A;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--sans); color: var(--gray-800); background: var(--white); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-200); padding: 0 5%;
+    height: 68px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo { font-family: var(--serif); font-size: 22px; color: var(--navy); text-decoration: none; }
+  .nav-logo span { color: var(--green-mid); }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 14px; color: var(--gray-600); text-decoration: none; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--navy); }
+  .nav-cta { background: var(--navy) !important; color: var(--white) !important; padding: 10px 22px !important; border-radius: 6px !important; font-weight: 500 !important; }
+
+  .post-hero { padding: 120px 5% 60px; background: var(--cream); border-bottom: 1px solid var(--gray-200); }
+  .post-hero-inner { max-width: 760px; margin: 0 auto; }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-400); text-decoration: none; margin-bottom: 32px; transition: color 0.2s; }
+  .back-link:hover { color: var(--navy); }
+  .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+  .post-category { font-size: 12px; font-weight: 500; background: var(--green-pale); color: var(--green); padding: 3px 10px; border-radius: 4px; }
+  .post-date { font-size: 13px; color: var(--gray-400); }
+  .post-read { font-size: 13px; color: var(--gray-400); }
+  .post-hero h1 { font-family: var(--serif); font-size: clamp(30px, 4vw, 46px); color: var(--navy); line-height: 1.15; letter-spacing: -0.5px; }
+
+  .post-body { padding: 60px 5%; }
+  .post-body-inner { max-width: 760px; margin: 0 auto; }
+  .post-content { font-size: 17px; color: var(--gray-700, #3a3a36); line-height: 1.85; font-weight: 300; }
+  .post-content p { margin-bottom: 24px; }
+
+  .post-cta {
+    background: var(--navy); border-radius: 16px; padding: 48px;
+    margin: 60px 0; text-align: center;
+  }
+  .post-cta h3 { font-family: var(--serif); font-size: 28px; color: var(--white); margin-bottom: 12px; }
+  .post-cta p { font-size: 15px; color: rgba(255,255,255,0.55); font-weight: 300; margin-bottom: 24px; }
+  .post-cta a { display: inline-block; background: var(--green-mid); color: var(--white); padding: 13px 28px; border-radius: 6px; text-decoration: none; font-size: 14px; font-weight: 500; transition: background 0.2s; }
+  .post-cta a:hover { background: var(--green); }
+
+  .related-section { border-top: 1px solid var(--gray-200); padding: 60px 5%; }
+  .related-inner { max-width: 1200px; margin: 0 auto; }
+  .related-title { font-family: var(--serif); font-size: 28px; color: var(--navy); margin-bottom: 32px; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .related-card { border: 1px solid var(--gray-200); border-radius: 12px; padding: 24px; transition: all 0.2s; }
+  .related-card:hover { border-color: var(--green-mid); transform: translateY(-2px); }
+  .related-card .post-category { margin-bottom: 12px; display: inline-block; }
+  .related-card h4 { font-family: var(--serif); font-size: 17px; color: var(--navy); line-height: 1.3; margin-bottom: 12px; }
+  .related-card h4 a { text-decoration: none; color: inherit; }
+  .related-card h4 a:hover { color: var(--green-mid); }
+  .related-card p { font-size: 13px; color: var(--gray-600); line-height: 1.6; font-weight: 300; margin-bottom: 16px; }
+  .read-more { color: var(--navy); font-size: 13px; font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; }
+  .read-more:hover { color: var(--green-mid); }
+
+  footer { background: var(--gray-800); padding: 48px 5%; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+  .footer-logo { font-family: var(--serif); font-size: 20px; color: var(--white); text-decoration: none; }
+  .footer-logo span { color: var(--green-light); }
+  .footer-links { display: flex; gap: 28px; list-style: none; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); width: 100%; text-align: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+
+  @media (max-width: 900px) { .related-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">raemy<span>ai</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html#solutions">Solutions</a></li>
+    <li><a href="index.html#how-it-works">How It Works</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="index.html#audit" class="nav-cta">Get Free Audit</a></li>
+  </ul>
+</nav>
+
+<div class="post-hero">
+  <div class="post-hero-inner">
+    <a href="blog.html" class="back-link">← Back to Blog</a>
+    <div class="post-meta" id="post-meta"></div>
+    <h1 id="post-title">Loading...</h1>
+  </div>
+</div>
+
+<div class="post-body">
+  <div class="post-body-inner">
+    <div class="post-content" id="post-content"></div>
+    <div class="post-cta">
+      <h3>Ready to reclaim your time?</h3>
+      <p>Get a free 60-minute operations audit — we'll map exactly where your practice is losing time and money, and show you how automation fixes it.</p>
+      <a href="index.html#audit">Get Your Free Audit</a>
+    </div>
+  </div>
+</div>
+
+<div class="related-section">
+  <div class="related-inner">
+    <h2 class="related-title">More from the blog</h2>
+    <div class="related-grid" id="related-grid"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <a href="index.html" class="footer-logo">raemy<span>ai</span></a>
+    <ul class="footer-links">
+      <li><a href="index.html#solutions">Solutions</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="index.html#audit">Free Audit</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Raemy AI. Houston, TX.</div>
+  </div>
+</footer>
+
+<script>
+const posts = [
+  { id:"1", slug:"why-independent-clinics-losing-revenue-admin", title:"Why Independent Clinics Are Losing $50K+ Per Year to Admin Work", date:"May 5, 2026", category:"Healthcare Operations", readTime:"5 min read", excerpt:"Physicians spend 2 hours on paperwork for every hour of patient care. For an independent practice, that math is quietly devastating.", content:"Physicians spend 2 hours on paperwork for every hour of patient care. For an independent practice, that math is quietly devastating — and most founders don't realize how much it's costing them until they run the numbers.\n\nLet's do the math together. If your physician bills at $300 per hour and spends 3 hours per day on administrative work — prior authorizations, intake processing, insurance follow-up, patient reminders — that's $900 per day in lost billing opportunity. Over 250 working days, that's $225,000 per year in clinical time consumed by tasks that don't require a medical degree.\n\nMost practices won't recapture all of that. But even recovering 30% through automation represents $67,500 annually — enough to justify almost any operational investment many times over.\n\nThe three biggest admin time sinks we see in independent health and wellness practices are prior authorization tracking, new patient intake processing, and appointment reminder management. These three workflows alone consume an average of 15-20 staff hours per week in a practice with two to four providers.\n\nThe good news: all three are highly automatable with current AI technology. They don't require clinical judgment. They don't require a physician's attention. They require a well-configured workflow system that runs reliably in the background while your team focuses on patients.\n\nAt Raemy AI, we've mapped dozens of independent practice workflows and found the same pattern every time — the highest-value automation targets are always the most repetitive, most manual, and most emotionally draining tasks for staff. When those get automated, everything else improves: staff retention, patient satisfaction, and clinical capacity.\n\nThe question isn't whether your practice can afford to automate. It's whether you can afford not to." },
+  { id:"2", slug:"ai-automation-small-business-where-to-start", title:"AI Automation for Small Businesses: Where to Actually Start", date:"May 12, 2026", category:"AI & Automation", readTime:"6 min read", excerpt:"Every small business owner has heard they need to automate. Almost none of them know where to start.", content:"Every small business owner has heard they need to automate. Almost none of them know where to start without wasting money on tools they won't use. Here's the framework we use with every new client.\n\nThe first mistake most businesses make is buying software before understanding their workflow. They see a demo, get excited, sign an annual contract, and six months later the tool is half-configured and nobody uses it. The software wasn't the problem. The sequence was.\n\nBefore any tool purchase, you need to answer three questions. First: what tasks consume the most time per week that don't require human judgment? Second: what tasks fall through the cracks most often — causing revenue loss, client dissatisfaction, or staff frustration? Third: what would your team actually use consistently, given their current technical comfort level?\n\nThe answers to those three questions tell you exactly where to start. In our experience working with founder-led service businesses, the answer is almost always one of three places: client follow-up and communication, intake and onboarding processing, or scheduling and reminder management.\n\nThese are high-volume, low-complexity, high-stakes workflows. High volume because they happen dozens or hundreds of times per week. Low complexity because they follow a predictable pattern every time. High stakes because when they fail — when a follow-up doesn't go out, when an intake gets lost, when a reminder doesn't fire — revenue walks out the door.\n\nOnce you've identified your highest-value automation target, the tool selection becomes obvious. You're not shopping for software anymore. You're shopping for a solution to a specific, well-defined problem. That's a completely different — and much more successful — buying process.\n\nStart with one workflow. Automate it completely. Measure the time saved and revenue impact over 30 days. Then move to the next one." },
+  { id:"3", slug:"prior-authorization-nightmare-fix", title:"The Prior Authorization Nightmare — And How AI Is Finally Fixing It", date:"May 19, 2026", category:"Healthcare Operations", readTime:"7 min read", excerpt:"Prior authorization is the single most hated administrative process in American healthcare.", content:"Prior authorization is the single most hated administrative process in American healthcare. Physicians hate it. Staff hate it. Patients suffer from it. And for independent practices without a dedicated billing team, it's often the single biggest source of revenue leakage and staff burnout.\n\nThe numbers are staggering. The average prior authorization request takes 14.9 hours of physician and staff time to complete. 93% of physicians report that prior auth delays care delivery. And 82% of physicians say prior auth burdens have increased significantly over the past five years, with no sign of slowing down.\n\nFor an independent practice, this isn't just an inconvenience — it's an existential operational challenge. Every hour a staff member spends on the phone with a payer chasing an authorization is an hour not spent on patient care, billing, scheduling, or any of the dozens of other tasks that keep a practice running.\n\nHere's what an AI-automated prior authorization workflow actually looks like in practice. When a new authorization request is initiated, the system automatically logs the request with the payer name, procedure code, submission date, and reference number. It sets a follow-up schedule — typically at 3 days, 7 days, and 14 days — and alerts staff via dashboard notification when each follow-up window arrives. If a denial comes back, the system automatically drafts an appeal letter pre-populated with the relevant clinical criteria and denial reason, leaving only the clinical specifics for the physician to add.\n\nThe result: authorization requests that previously required 45 minutes of manual tracking per case now require 5 minutes of staff interaction. The follow-up never gets missed. The appeal response time drops from weeks to days. And your staff goes home without the emotional weight of a dozen unresolved authorizations sitting on their desk." },
+  { id:"4", slug:"five-workflows-every-service-business-should-automate", title:"5 Workflows Every Service Business Should Automate Before Hiring", date:"May 26, 2026", category:"AI & Automation", readTime:"6 min read", excerpt:"Most founder-led service businesses hire before they automate.", content:"Most founder-led service businesses hire before they automate — which means they're paying a full-time salary to do work that could run automatically for a fraction of the cost.\n\nWorkflow one: lead follow-up. The average service business follows up with a new inquiry within 47 hours. The businesses that follow up within 5 minutes close 9x more clients. An automated follow-up sequence — triggered the moment a new lead submits a form — costs almost nothing to run and consistently outperforms any human-driven process.\n\nWorkflow two: client onboarding. Every new client goes through the same process: intake form, contract signature, welcome communication, initial scheduling. This sequence is completely predictable and completely automatable. When it runs manually, it takes 45-90 minutes of staff time per client. When automated, it takes 0 minutes and runs perfectly every time.\n\nWorkflow three: appointment and meeting reminders. No-shows cost service businesses an average of 15% of their potential revenue. A simple automated reminder sequence reduces no-shows by 30-50% in most businesses. This is the highest-ROI automation available to any service business.\n\nWorkflow four: invoice and payment follow-up. An automated payment reminder sequence recovers an average of 23% more outstanding invoices without a single phone call from your team.\n\nWorkflow five: review and referral requests. The best time to ask a client for a review or referral is 48 hours after a successful service delivery. Automated, this becomes your most reliable source of new business.\n\nNone of these workflows require a developer. They require clear thinking about your process, the right tools, and about two weeks of setup time." },
+  { id:"5", slug:"hipaa-compliance-independent-practice-guide", title:"HIPAA Compliance for Independent Practices: What You Actually Need to Know", date:"June 2, 2026", category:"Healthcare Operations", readTime:"8 min read", excerpt:"HIPAA compliance sounds overwhelming. The reality is far more manageable than the acronym suggests.", content:"HIPAA compliance sounds overwhelming. Most independent practices either over-engineer it or ignore it entirely. The reality is far more manageable than the acronym suggests, if you understand what actually requires compliance and what doesn't.\n\nThe core of HIPAA is simple: Protected Health Information — PHI — must be stored, transmitted, and processed in systems that meet specific security standards, and any third party that handles PHI on your behalf must sign a Business Associate Agreement.\n\nWhat counts as PHI? Any information that could identify a specific patient combined with health-related data. A patient's name combined with their diagnosis. A date of birth combined with a treatment record.\n\nWhat doesn't count as PHI? Appointment slots without patient names. Insurance authorization reference numbers without patient identifiers. Aggregate scheduling data. Operational workflow statuses.\n\nThis distinction matters enormously for practices looking to implement automation. Many of the highest-value administrative workflows — appointment reminders, scheduling optimization, prior auth tracking, staff task management — can be automated without ever touching PHI, as long as the system is designed correctly.\n\nAt Raemy Health, we build every client's system with a clear PHI boundary built into the architecture. Operational workflows run on operational data — no clinical information required. When a practice is ready to integrate directly with their EHR, we upgrade to fully HIPAA-compliant infrastructure with a signed BAA. But for most practices in their first 90 days of automation, that step isn't necessary to capture enormous value.\n\nThe practical advice: start with operational automation that doesn't touch PHI. Measure the impact. Then expand into PHI-adjacent workflows with proper compliance infrastructure in place." },
+  { id:"6", slug:"ai-tools-actually-worth-paying-for-2026", title:"The AI Tools Actually Worth Paying For in 2026", date:"June 9, 2026", category:"AI & Automation", readTime:"5 min read", excerpt:"After building workflow systems for health and wellness businesses, here's an honest breakdown of what's worth the investment.", content:"The AI tools landscape is overwhelming. Every week there's a new product promising to transform your business. After building AI workflow systems for health and wellness businesses and service companies, here's an honest breakdown.\n\nCategory one: AI that automates repetitive communication. Tools that draft, send, and manage high-volume outbound communication — appointment reminders, follow-up sequences, intake confirmations — deliver immediate, measurable ROI. Worth paying for without hesitation.\n\nCategory two: AI that processes and routes information. Tools that take unstructured input and automatically categorize, summarize, and route it to the right person or system. This is where large language models genuinely shine. The time savings per transaction are small, but at scale across hundreds of weekly interactions, the cumulative impact is significant.\n\nCategory three: AI that generates content. Blog posts, social captions, email copy, proposals. Genuinely useful for businesses that need consistent content output. The key is human review before publishing.\n\nCategory four: AI that promises to replace your CRM, EHR, or core business system. Almost universally overhyped at this stage. Avoid until the category matures.\n\nThe honest framework: if an AI tool eliminates a specific, repetitive, high-volume task from your team's plate and you can measure the time saved in hours per week — buy it. If the value proposition is vague or requires significant behavior change from your team — wait." },
+  { id:"7", slug:"no-show-problem-costing-your-practice", title:"The No-Show Problem Is Costing Your Practice More Than You Think", date:"June 16, 2026", category:"Healthcare Operations", readTime:"5 min read", excerpt:"The average independent practice loses 14% of potential revenue to no-shows. Most accept this as unavoidable. It isn't.", content:"The average independent practice loses 14% of potential revenue to no-shows and late cancellations. Most accept this as an unavoidable cost of doing business. It isn't — and the fix is simpler than most practice owners realize.\n\nLet's put real numbers to this. If your practice generates $500,000 annually in billable services, a 14% no-show rate represents $70,000 in lost revenue. That's money your practice earned the right to collect that simply evaporated because the patient didn't show up and nobody intervened in time.\n\nThe research on what actually reduces no-shows is clear and consistent. A single reminder sent 24 hours before an appointment reduces no-show rates by an average of 28%. Two reminders — at 48 hours and 4 hours before — reduce them by 38%. A three-touch sequence including a confirmation request reduces no-shows by up to 52%.\n\nThe math is simple. A $70,000 no-show problem reduced by 50% through automated reminders represents $35,000 in recovered annual revenue. An automated reminder system costs a fraction of that to implement.\n\nBut reminders are only half the solution. The other half is what happens after a no-show occurs. Most practices do nothing. An automated no-show recovery workflow changes that. When a patient doesn't confirm or show up, the system immediately queues a rebooking outreach. Practices that implement this recover 20-30% of missed appointments within 72 hours.\n\nThis is one of the first workflows we implement for every Raemy Health client — because the ROI is immediate, measurable, and almost always covers the entire cost of the engagement within the first 60 days." },
+  { id:"8", slug:"founder-operations-trap-how-to-escape", title:"The Founder Operations Trap — And How to Finally Escape It", date:"June 23, 2026", category:"AI & Automation", readTime:"6 min read", excerpt:"Most founders start their business to do meaningful work. Within two years, they're spending 60% of their time on admin.", content:"Most founders start their business to do meaningful work — to practice medicine, to serve clients, to build something they're proud of. Within two years, they're spending 60% of their time on work that has nothing to do with why they started.\n\nThis is what we call the Founder Operations Trap. And it's not a personal failing — it's a structural problem that emerges naturally as any small business grows beyond its initial simplicity.\n\nHere's how the trap works. In the beginning, you do everything yourself. That's fine — you're learning, you're lean, and volume is manageable. As you grow, volume increases faster than your capacity to handle it manually. You hire someone to help. But now you're managing a person in addition to doing the work. The admin burden doesn't decrease — it shifts and multiplies.\n\nThe businesses that escape this trap don't necessarily hire faster or smarter. They automate before they hire. They identify every repetitive, predictable, high-volume task in their operation and ask: does this require human judgment, or does it require reliable execution? Most operational tasks require reliable execution. That's an automation problem, not a hiring problem.\n\nWhen you automate before you hire, something remarkable happens. The role you eventually hire for becomes purely human — judgment, relationships, creativity, care. Their job satisfaction increases. Their output quality increases. And your cost per unit of operational capacity drops dramatically.\n\nAt Raemy AI, we've seen this pattern play out consistently across health practices, wellness studios, and service businesses of all kinds. The founders who implement AI-native operations early don't just save money — they reclaim the reason they started their business in the first place.\n\nThat's the real ROI. Not just the hours saved or the revenue recovered. It's the founder who can actually practice medicine again. The studio owner who can focus on their clients. The service business that scales without the owner working 80-hour weeks." }
+];
+
+const slug = new URLSearchParams(window.location.search).get('slug');
+const post = posts.find(p => p.slug === slug);
+
+if (post) {
+  document.title = post.title + ' — Raemy AI';
+  document.getElementById('post-meta').innerHTML = `
+    <span class="post-category">${post.category}</span>
+    <span class="post-date">${post.date}</span>
+    <span class="post-read">${post.readTime}</span>`;
+  document.getElementById('post-title').textContent = post.title;
+  document.getElementById('post-content').innerHTML = post.content.split('\n\n').map(p => `<p>${p}</p>`).join('');
+
+  const related = posts.filter(p => p.slug !== slug).slice(0, 3);
+  document.getElementById('related-grid').innerHTML = related.map(p => `
+    <div class="related-card">
+      <span class="post-category">${p.category}</span>
+      <h4><a href="post.html?slug=${p.slug}">${p.title}</a></h4>
+      <p>${p.excerpt}</p>
+      <a href="post.html?slug=${p.slug}" class="read-more">Read →</a>
+    </div>`).join('');
+} else {
+  document.getElementById('post-title').textContent = 'Post not found';
+  document.getElementById('post-content').innerHTML = '<p>This post could not be found. <a href="blog.html">Return to the blog.</a></p>';
+}
+</script>
+</body>
+</html>
