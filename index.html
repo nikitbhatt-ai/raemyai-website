@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raemy AI — AI Implementation for Small Business</title>
+<meta name="description" content="Raemy AI helps small businesses implement, operate, and scale AI across their entire operation. Custom-built for your business. Guided by specialists who know your industry.">
+
+<meta property="og:title" content="Raemy AI — Small businesses deserve better tools.">
+<meta property="og:description" content="We help small businesses implement, operate, and scale AI. Custom-built for your business. Guided by industry specialists. No technical background required.">
+<meta property="og:url" content="https://raemyai.com">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Raemy AI">
+<meta property="og:image" content="https://raemyai.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Raemy AI — AI Implementation for Small Business">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Raemy AI — Small businesses deserve better tools.">
+<meta name="twitter:description" content="We help small businesses implement, operate, and scale AI across their entire operation.">
+<meta name="twitter:image" content="https://raemyai.com/og-image.png">
+
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0A1B33;
+    --navy-deep:#06111F;
+    --navy-mid:#152E52;
+    --green:#2D6A4F;
+    --green-mid:#40916C;
+    --green-light:#74C69D;
+    --green-pale:#D8F3DC;
+    --acid:#C6F36A;
+    --cream:#F4EFE6;
+    --paper:#FBF7EE;
+    --ink:#0A1B33;
+    --ink-soft:#3A4A60;
+    --ink-mute:#6B7A91;
+    --line:#E5DECF;
+    --line-soft:#EFE9DA;
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'DM Sans',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);font-weight:400;color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:rgba(251,247,238,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:0 clamp(20px,5vw,56px);height:72px;display:flex;align-items:center;justify-content:space-between}
+  .nav-logo{font-family:var(--serif);font-size:24px;font-weight:500;color:var(--ink);text-decoration:none;letter-spacing:-0.4px;display:flex;align-items:baseline;gap:10px}
+  .nav-logo b{font-style:italic;font-weight:500;color:var(--green)}
+  .nav-logo .dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;align-self:center;animation:pulse 2s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+  .nav-links{display:flex;align-items:center;gap:32px;list-style:none}
+  .nav-links a{font-size:13px;color:var(--ink-soft);text-decoration:none;letter-spacing:0.3px}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{background:var(--ink)!important;color:var(--paper)!important;padding:10px 20px!important;border-radius:999px!important;font-size:13px!important;font-weight:500!important;display:inline-flex!important;align-items:center;gap:6px}
+  .nav-cta:hover{background:var(--green)!important}
+
+  /* HERO */
+  .hero{position:relative;padding:100px clamp(20px,5vw,56px) 80px;background:var(--paper);overflow:hidden;display:flex;flex-direction:column;justify-content:center;min-height:calc(100vh - 72px)}
+  .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line-soft) 1px,transparent 1px),linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 80% 60% at 50% 30%,black 30%,transparent 80%);opacity:0.7}
+  .hero-glow{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(116,198,157,0.18),transparent 60%);top:-200px;right:-200px;pointer-events:none}
+  .hero-glow-2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(198,243,106,0.12),transparent 60%);bottom:-100px;left:-100px;pointer-events:none}
+  .hero-inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;width:100%}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--green);padding:6px 14px;border:1px solid var(--green);border-radius:999px;margin-bottom:32px;background:rgba(45,106,79,0.05)}
+  .hero-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green)}
+  .hero h1{font-family:var(--serif);font-size:clamp(52px,8.5vw,128px);line-height:0.93;letter-spacing:-0.04em;font-weight:400;margin-bottom:32px;max-width:16ch;color:var(--ink);text-wrap:balance}
+  .hero h1 em{font-style:italic;color:var(--green)}
+  .hero-row{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:end;margin:40px 0 70px}
+  .hero-sub{font-size:18px;color:var(--ink-soft);max-width:48ch;font-weight:400;line-height:1.65}
+  .hero-actions{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
+  .btn-primary{background:var(--ink);color:var(--paper);padding:18px 32px;border-radius:999px;text-decoration:none;font-weight:500;font-size:15px;display:inline-flex;align-items:center;gap:10px;transition:all 0.25s;border:none;cursor:pointer;font-family:inherit}
+  .btn-primary:hover{transform:translate(2px,-2px);box-shadow:-4px 4px 0 var(--green)}
+  .btn-primary svg{transition:transform 0.25s}
+  .btn-primary:hover svg{transform:translateX(3px)}
+  .btn-ghost{color:var(--ink-soft);text-decoration:none;font-size:14px;display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px}
+  .btn-ghost:hover{color:var(--green)}
+  .hero-trust{font-family:var(--mono);font-size:11px;color:var(--ink-mute);letter-spacing:1px;text-transform:uppercase;margin-top:8px}
+
+  /* DEMO PANEL */
+  .demo-panel{background:linear-gradient(180deg,var(--navy),var(--navy-deep));border:1px solid var(--navy-mid);border-radius:24px;padding:8px;position:relative;box-shadow:0 32px 80px -24px rgba(10,27,51,0.4),inset 0 1px 0 rgba(255,255,255,0.06);max-width:1400px;margin:0 auto;width:100%;color:#fff}
+  .demo-chrome{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,0.08)}
+  .demo-tabs{display:flex;gap:6px;align-items:center}
+  .demo-tab{padding:6px 14px;border-radius:8px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.5);border:1px solid transparent;cursor:pointer;background:transparent;font-weight:500;transition:all 0.15s;letter-spacing:0.5px}
+  .demo-tab.active{color:#fff;background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.1)}
+  .demo-controls{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.5)}
+  .demo-status{display:flex;align-items:center;gap:6px;color:var(--acid)}
+  .demo-status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px var(--acid);animation:pulse 1.5s ease-in-out infinite}
+  .demo-body{display:grid;grid-template-columns:220px 1fr 260px;min-height:460px}
+  .demo-side{padding:18px;border-right:1px solid rgba(255,255,255,0.08)}
+  .side-section{margin-bottom:22px}
+  .side-label{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px}
+  .side-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;font-size:13px;color:rgba(255,255,255,0.65);cursor:pointer;transition:background 0.15s}
+  .side-item:hover{background:rgba(255,255,255,0.04)}
+  .side-item.active{background:rgba(198,243,106,0.1);color:#fff}
+  .side-icon{width:14px;height:14px;border-radius:4px;background:rgba(255,255,255,0.4);flex-shrink:0;opacity:0.7}
+  .side-item.active .side-icon{background:var(--acid);opacity:1}
+  .side-count{margin-left:auto;font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.05);padding:1px 6px;border-radius:4px}
+  .side-item.active .side-count{color:var(--acid);background:rgba(198,243,106,0.15)}
+  .demo-canvas{padding:24px;position:relative;background:repeating-linear-gradient(45deg,transparent,transparent 60px,rgba(255,255,255,0.015) 60px,rgba(255,255,255,0.015) 61px);overflow:hidden}
+  .canvas-title{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:20px}
+  .canvas-title h3{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:-0.01em;line-height:1.1;color:#fff}
+  .canvas-title p{font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px}
+  .canvas-action{padding:6px 12px;border:1px solid rgba(255,255,255,0.15);border-radius:8px;background:transparent;color:rgba(255,255,255,0.7);font-family:var(--mono);font-size:11px;cursor:pointer;text-transform:uppercase;letter-spacing:1px}
+  .wf-canvas{position:relative;height:360px}
+  .wf-node{position:absolute;background:rgba(21,46,82,0.85);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:14px;min-width:180px;cursor:grab;transition:all 0.3s;box-shadow:0 8px 20px -8px rgba(0,0,0,0.4)}
+  .wf-node:hover{border-color:var(--acid);transform:translate(-2px,-2px);box-shadow:0 12px 28px -8px rgba(198,243,106,0.3)}
+  .wf-node.running{border-color:var(--acid);background:linear-gradient(180deg,rgba(198,243,106,0.12),rgba(21,46,82,0.85))}
+  .wf-node.running::before{content:"";position:absolute;inset:-1px;border-radius:13px;border:1px solid var(--acid);opacity:0.5;animation:running 1.6s ease-out infinite;pointer-events:none}
+  @keyframes running{0%{transform:scale(1);opacity:0.6}100%{transform:scale(1.08);opacity:0}}
+  .wf-node-label{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+  .wf-node-label .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.4)}
+  .wf-node.running .wf-node-label .dot{background:var(--acid);box-shadow:0 0 6px var(--acid)}
+  .wf-node-title{font-size:13px;color:#fff;font-weight:500;margin-bottom:4px}
+  .wf-node-desc{font-size:11px;color:rgba(255,255,255,0.6);font-family:var(--mono)}
+  .wf-node.trigger{border-color:rgba(255,177,200,0.4)}
+  .wf-node.trigger .dot{background:#FFB1C8}
+  .wf-node.action{border-color:rgba(118,234,215,0.4)}
+  .wf-node.action .dot{background:#76EAD7}
+  .wf-node.decision{border-color:rgba(255,214,107,0.4)}
+  .wf-node.decision .dot{background:#FFD66B}
+  .wf-node.output{border-color:rgba(116,198,157,0.5)}
+  .wf-node.output .dot{background:var(--green-light)}
+  .n1{top:20px;left:20px}
+  .n2{top:20px;left:240px}
+  .n3{top:140px;left:130px}
+  .n4{top:140px;left:340px}
+  .n5{top:260px;left:240px}
+  .wf-edges{position:absolute;inset:0;pointer-events:none}
+  .wf-edges path{stroke:rgba(255,255,255,0.2);stroke-width:1.5;fill:none;stroke-dasharray:4 4}
+  .wf-edges path.live{stroke:var(--acid);stroke-dasharray:6 4;animation:dash 1s linear infinite}
+  @keyframes dash{to{stroke-dashoffset:-20}}
+  .demo-right{padding:18px;border-left:1px solid rgba(255,255,255,0.08);display:flex;flex-direction:column;gap:14px}
+  .right-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px}
+  .right-label{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:8px}
+  .right-stat{font-family:var(--serif);font-size:36px;font-weight:400;letter-spacing:-0.02em;line-height:1;color:#fff}
+  .right-stat em{color:var(--acid);font-style:italic}
+  .right-meta{font-size:11px;color:rgba(255,255,255,0.55);margin-top:4px}
+  .live-feed{display:flex;flex-direction:column;gap:8px;font-size:11px;font-family:var(--mono);color:rgba(255,255,255,0.65);max-height:160px;overflow:hidden}
+  .feed-item{display:flex;gap:8px;padding:6px 8px;background:rgba(255,255,255,0.02);border-radius:6px;animation:fadeIn 0.4s ease-out}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+  .feed-time{color:rgba(255,255,255,0.4);flex-shrink:0}
+  .feed-msg{color:rgba(255,255,255,0.7)}
+  .feed-msg b{color:var(--acid);font-weight:500}
+
+  /* MARQUEE */
+  .marquee{background:var(--ink);color:var(--paper);overflow:hidden;border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06)}
+  .marquee-track{display:flex;gap:48px;padding:18px 0;animation:marquee 30s linear infinite;white-space:nowrap;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:2px}
+  .marquee-track span{display:inline-flex;align-items:center;gap:14px;color:rgba(255,255,255,0.5)}
+  .marquee-track span::before{content:"◆";color:var(--acid);font-size:8px}
+  @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* SECTIONS */
+  .section{padding:120px clamp(20px,5vw,56px)}
+  .section-inner{max-width:1400px;margin:0 auto}
+  .eyebrow{font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:20px;display:inline-flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--green)}
+  .section-title{font-family:var(--serif);font-size:clamp(38px,5vw,72px);line-height:1;letter-spacing:-0.03em;color:var(--ink);font-weight:400;margin-bottom:24px;max-width:18ch;text-wrap:balance}
+  .section-title em{font-style:italic;color:var(--green)}
+  .section-sub{font-size:17px;color:var(--ink-soft);max-width:54ch;line-height:1.65;font-weight:400}
+
+  /* PROBLEM */
+  .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:80px;border-top:1px solid var(--line)}
+  .problem-card{padding:40px 32px 40px 0;border-right:1px solid var(--line);position:relative;transition:background 0.3s}
+  .problem-card:last-child{border-right:none}
+  .problem-card:not(:first-child){padding-left:32px}
+  .problem-card:hover{background:rgba(45,106,79,0.04)}
+  .problem-num{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:2px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center}
+  .problem-num::after{content:"";flex:1;height:1px;background:var(--line);margin-left:16px}
+  .problem-title{font-family:var(--serif);font-size:26px;color:var(--ink);line-height:1.15;font-weight:500;margin-bottom:16px;letter-spacing:-0.01em}
+  .problem-desc{font-size:15px;color:var(--ink-soft);line-height:1.65;font-weight:400}
+
+  /* MISSION */
+  .mission{background:var(--ink);color:#fff;padding:120px clamp(20px,5vw,56px);position:relative;overflow:hidden}
+  .mission::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.04) 1px,transparent 0);background-size:40px 40px;pointer-events:none}
+  .mission-inner{max-width:1400px;margin:0 auto;position:relative;z-index:1}
+  .mission .eyebrow{color:var(--acid)}
+  .mission .eyebrow::before{background:var(--acid)}
+  .mission-headline{font-family:var(--serif);font-size:clamp(40px,5.5vw,80px);line-height:1;letter-spacing:-0.03em;color:#fff;font-weight:400;margin-bottom:40px;max-width:20ch;text-wrap:balance}
+  .mission-headline em{font-style:italic;color:var(--acid)}
+  .mission-body{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .mission-text p{font-size:17px;color:rgba(255,255,255,0.65);line-height:1.7;font-weight:400;margin-bottom:20px;max-width:46ch}
+  .mission-stats{display:grid;grid-template-columns:1fr;gap:24px}
+  .mission-stat{padding:28px;border:1px solid rgba(255,255,255,0.1);border-radius:16px;background:rgba(255,255,255,0.03)}
+  .mission-stat-num{font-family:var(--serif);font-size:52px;line-height:1;color:#fff;letter-spacing:-0.03em;margin-bottom:8px}
+  .mission-stat-num em{color:var(--acid);font-style:italic}
+  .mission-stat-label{font-size:14px;color:rgba(255,255,255,0.55);font-family:var(--mono);text-transform:uppercase;letter-spacing:1px}
+
+  /* HOW IT WORKS */
+  .how-section{padding:120px clamp(20px,5vw,56px);background:var(--paper);border-top:1px solid var(--line)}
+  .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:80px;background:var(--line);border:1px solid var(--line)}
+  .how-step{background:var(--paper);padding:40px 32px;display:flex;flex-direction:column;gap:16px;min-height:300px;position:relative;transition:background 0.2s}
+  .how-step:hover{background:#fff}
+  .how-num{font-family:var(--serif);font-size:88px;color:var(--green-pale);line-height:0.85;font-weight:400;letter-spacing:-0.04em}
+  .how-num em{font-style:italic;color:var(--green)}
+  .how-title{font-family:var(--serif);font-size:21px;color:var(--ink);line-height:1.2;font-weight:500;letter-spacing:-0.01em}
+  .how-desc{font-size:14px;color:var(--ink-soft);line-height:1.65;font-weight:400}
+  .how-meta{margin-top:auto;padding-top:16px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:10px;color:var(--ink-mute);text-transform:uppercase;letter-spacing:1px}
+  .how-meta b{color:var(--green);font-weight:500}
+
+  /* VERTICALS */
+  .verticals{background:var(--cream);padding:120px clamp(20px,5vw,56px);position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .vertical-tabs{display:flex;gap:8px;margin-top:60px;margin-bottom:40px;border-bottom:1px solid var(--line);padding-bottom:0;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .vertical-tabs::-webkit-scrollbar{display:none}
+  .vtab{padding:14px 24px;border:none;background:none;color:var(--ink-mute);font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:1.5px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;font-weight:500;white-space:nowrap;flex-shrink:0}
+  .vtab.active{color:var(--green);border-bottom-color:var(--green)}
+  .vtab:hover:not(.active){color:var(--ink)}
+  .vertical-panel{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start}
+  .vp-content h3{font-family:var(--serif);font-size:44px;line-height:1.05;font-weight:400;margin-bottom:24px;letter-spacing:-0.02em;color:var(--ink);text-wrap:balance}
+  .vp-content h3 em{font-style:italic;color:var(--green)}
+  .vp-content p{font-size:16px;color:var(--ink-soft);line-height:1.7;font-weight:400;margin-bottom:32px;max-width:42ch}
+  .vp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .vp-feat{padding:16px;background:var(--paper);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;gap:6px;transition:all 0.2s}
+  .vp-feat:hover{border-color:var(--green);background:rgba(216,243,220,0.4)}
+  .vp-feat-num{font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:1.5px;text-transform:uppercase}
+  .vp-feat-name{font-size:13px;color:var(--ink);font-weight:500}
+  .vp-note{margin-top:24px;padding:20px;background:var(--paper);border:1px solid var(--line);border-radius:12px;font-size:14px;color:var(--ink-soft);line-height:1.6}
+  .vp-note b{color:var(--ink);font-weight:500}
+
+  /* PRODUCT MOCK */
+  .product-mock{background:linear-gradient(180deg,var(--navy),var(--navy-deep));border:1px solid var(--navy-mid);border-radius:20px;overflow:hidden;box-shadow:0 32px 80px -24px rgba(10,27,51,0.4);color:#fff}
+  .pm-bar{padding:14px 18px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.5)}
+  .pm-bar .dots{display:flex;gap:6px}
+  .pm-bar .dots span{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,0.15)}
+  .pm-bar .url{margin-left:14px;color:rgba(255,255,255,0.7);letter-spacing:0.5px}
+  .pm-status{margin-left:auto;display:flex;align-items:center;gap:6px;color:var(--acid)}
+  .pm-status::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--acid);box-shadow:0 0 8px var(--acid)}
+  .pm-content{padding:24px;display:flex;flex-direction:column;gap:18px}
+  .pm-hello{display:flex;justify-content:space-between;align-items:flex-start}
+  .pm-hello h4{font-family:var(--serif);font-size:22px;font-weight:400;letter-spacing:-0.01em;color:#fff}
+  .pm-hello h4 em{color:var(--acid);font-style:italic}
+  .pm-hello p{font-size:11px;color:rgba(255,255,255,0.5);font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;margin-top:4px}
+  .pm-pill{padding:6px 12px;background:rgba(198,243,106,0.1);border:1px solid rgba(198,243,106,0.3);border-radius:999px;color:var(--acid);font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:500;white-space:nowrap}
+  .pm-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+  .pm-stat{padding:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px}
+  .pm-stat-num{font-family:var(--serif);font-size:26px;font-weight:400;letter-spacing:-0.02em;color:#fff}
+  .pm-stat-num em{color:var(--acid);font-style:italic}
+  .pm-stat-label{font-size:10px;color:rgba(255,255,255,0.5);font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+  .pm-tasks{display:flex;flex-direction:column;gap:6px}
+  .pm-task{display:flex;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:10px;font-size:12px;transition:all 0.2s}
+  .pm-task.live{border-color:var(--acid);background:rgba(198,243,106,0.06)}
+  .pm-task .check{width:16px;height:16px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.4);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+  .pm-task.done .check{background:var(--green-light);border-color:var(--green-light)}
+  .pm-task.done .check::after{content:"✓";color:var(--ink);font-size:10px;font-weight:600}
+  .pm-task.live .check{border-color:var(--acid);background:rgba(198,243,106,0.2)}
+  .pm-task.live .check::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--acid);animation:pulse 1s ease-in-out infinite}
+  .pm-task .pm-name{color:#fff;font-weight:500;flex:1}
+  .pm-task .pm-meta{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);letter-spacing:0.5px}
+  .pm-task.done .pm-name{color:rgba(255,255,255,0.7)}
+
+  /* BLUEPRINT */
+  .bp-section{padding:120px clamp(20px,5vw,56px);background:var(--ink);color:#fff;position:relative;overflow:hidden}
+  .bp-section::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.06) 1px,transparent 0);background-size:32px 32px;pointer-events:none}
+  .bp-section .eyebrow{color:var(--acid)}
+  .bp-section .eyebrow::before{background:var(--acid)}
+  .bp-section .section-title{color:#fff}
+  .bp-section .section-title em{color:var(--acid)}
+  .bp-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center;margin-top:60px;position:relative;z-index:1}
+  .bp-text p{font-size:16px;color:rgba(255,255,255,0.6);line-height:1.7;font-weight:400;margin-bottom:20px;max-width:48ch}
+  .bp-focus-label{font-family:var(--mono);font-size:12px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1.5px;margin-top:32px}
+  .bp-focus-title{font-family:var(--serif);font-size:30px;font-weight:400;letter-spacing:-0.02em;margin-top:8px;color:#fff}
+  .bp-stack{position:relative;aspect-ratio:1.1/1;perspective:1200px}
+  .bp-layer{position:absolute;left:0;right:0;border:1px solid rgba(255,255,255,0.12);border-radius:16px;padding:22px 24px;background:rgba(21,46,82,0.7);backdrop-filter:blur(8px);cursor:pointer;transition:all 0.5s cubic-bezier(0.34,1.56,0.64,1)}
+  .bp-layer-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .bp-layer-num{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1.5px}
+  .bp-layer-tag{font-family:var(--mono);font-size:9px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1px;border:1px solid rgba(255,255,255,0.12);padding:2px 8px;border-radius:4px}
+  .bp-layer-title{font-family:var(--serif);font-size:20px;font-weight:400;color:#fff;letter-spacing:-0.01em}
+  .bp-layer-desc{font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px;font-family:var(--mono)}
+  .bp-layer.l0{top:0%;transform:rotateX(6deg) translateY(0px) scale(0.94);opacity:0.5;z-index:1}
+  .bp-layer.l1{top:8%;transform:rotateX(4deg) translateY(0px) scale(0.96);opacity:0.7;z-index:2}
+  .bp-layer.l2{top:16%;transform:rotateX(0deg) translateY(0px) scale(1);opacity:1;z-index:3;border-color:var(--acid)}
+  .bp-layer.l3{top:56%;transform:rotateX(-4deg) translateY(0px) scale(0.97);opacity:0.6;z-index:2}
+  .bp-controls{display:flex;gap:8px;margin-top:24px;position:relative;z-index:10}
+  .bp-btn{width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,0.2);background:transparent;color:rgba(255,255,255,0.5);font-family:var(--mono);font-size:10px;cursor:pointer;transition:all 0.2s}
+  .bp-btn.active{background:var(--acid);color:var(--ink);border-color:var(--acid)}
+
+  /* TEAM */
+  .team-section{padding:120px clamp(20px,5vw,56px);background:var(--cream);border-top:1px solid var(--line)}
+  .team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+  .team-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:all 0.2s}
+  .team-card:hover{box-shadow:0 16px 40px -16px rgba(10,27,51,0.15);transform:translateY(-2px)}
+  .team-card-img{aspect-ratio:4/3;overflow:hidden;background:var(--cream)}
+  .team-card-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+  .team-card-body{padding:24px}
+  .team-card-name{font-family:var(--serif);font-size:24px;color:var(--ink);font-weight:500;letter-spacing:-0.01em;margin-bottom:4px}
+  .team-card-role{font-family:var(--mono);font-size:11px;color:var(--green);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:16px}
+  .team-card-bio{font-size:14px;color:var(--ink-soft);line-height:1.65;margin-bottom:20px}
+  .team-card-link{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:999px;text-decoration:none;font-size:12px;font-weight:500;transition:background 0.2s}
+  .team-card-link:hover{background:var(--green)}
+  .team-coming{background:var(--paper);border:1px dashed var(--line);border-radius:20px;padding:40px 24px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:12px}
+  .team-coming-label{font-family:var(--mono);font-size:11px;color:var(--ink-mute);text-transform:uppercase;letter-spacing:1.5px}
+  .team-coming-title{font-family:var(--serif);font-size:22px;color:var(--ink);font-weight:500;letter-spacing:-0.01em}
+  .team-coming-desc{font-size:14px;color:var(--ink-soft);line-height:1.6}
+
+  /* PRICING */
+  .pricing-section{padding:120px clamp(20px,5vw,56px);background:var(--paper);border-top:1px solid var(--line)}
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
+  .pricing-card{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:36px;display:flex;flex-direction:column;gap:0;transition:all 0.2s}
+  .pricing-card:hover{box-shadow:0 16px 40px -16px rgba(10,27,51,0.1)}
+  .pricing-card.featured{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .pricing-tier{font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--green);margin-bottom:8px}
+  .pricing-card.featured .pricing-tier{color:var(--acid)}
+  .pricing-badge{display:inline-flex;background:var(--acid);color:var(--ink);padding:4px 12px;border-radius:999px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:16px}
+  .pricing-audit-line{font-size:13px;color:var(--green);font-weight:500;margin-bottom:20px;font-family:var(--mono)}
+  .pricing-card.featured .pricing-audit-line{color:var(--acid)}
+  .pricing-desc{font-size:14px;color:var(--ink-soft);line-height:1.65;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+  .pricing-card.featured .pricing-desc{color:rgba(255,255,255,0.6);border-color:rgba(255,255,255,0.1)}
+  .pricing-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:32px;flex:1}
+  .pricing-features li{font-size:13px;color:var(--ink-soft);display:flex;align-items:flex-start;gap:10px;line-height:1.4}
+  .pricing-card.featured .pricing-features li{color:rgba(255,255,255,0.7)}
+  .pricing-features li::before{content:"✓";color:var(--green);font-weight:600;flex-shrink:0;margin-top:1px}
+  .pricing-card.featured .pricing-features li::before{color:var(--acid)}
+  .pricing-cta{display:block;text-align:center;padding:14px 24px;border-radius:999px;text-decoration:none;font-size:14px;font-weight:500;transition:all 0.2s;border:1px solid var(--line);color:var(--ink);background:var(--paper)}
+  .pricing-cta:hover{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+  .pricing-card.featured .pricing-cta{background:var(--acid);color:var(--ink);border-color:var(--acid)}
+  .pricing-card.featured .pricing-cta:hover{background:#d4ff7a}
+  .pricing-note{margin-top:40px;padding:28px;background:var(--cream);border:1px solid var(--line);border-radius:16px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .pricing-note p{font-size:15px;color:var(--ink-soft);max-width:52ch;line-height:1.6}
+  .pricing-note p b{color:var(--ink);font-weight:500}
+  .impl-fee-box{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px 20px;white-space:nowrap}
+  .impl-fee-box .fee-label{font-family:var(--mono);font-size:10px;color:var(--ink-mute);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px}
+  .impl-fee-box .fee-amount{font-family:var(--serif);font-size:28px;color:var(--ink);letter-spacing:-0.02em}
+  .impl-fee-box .fee-sub{font-size:12px;color:var(--ink-soft);margin-top:2px}
+
+  /* FOUNDER */
+  .founder{padding:120px clamp(20px,5vw,56px);background:var(--paper);border-top:1px solid var(--line)}
+  .founder-grid{display:grid;grid-template-columns:0.8fr 1.4fr;gap:80px;align-items:center;max-width:1400px;margin:0 auto}
+  .founder-img-wrap{position:relative;aspect-ratio:4/5;max-width:380px;border-radius:24px;border:1px solid var(--line);overflow:hidden;background:var(--cream)}
+  .founder-img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+  .founder-tag{position:absolute;bottom:24px;left:24px;background:var(--ink);color:var(--paper);padding:8px 14px;border-radius:999px;font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .founder-tag::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--green-light);animation:pulse 1.4s ease-in-out infinite}
+  .founder-quote{font-family:var(--serif);font-size:clamp(26px,3.2vw,42px);line-height:1.15;color:var(--ink);font-weight:400;letter-spacing:-0.02em;margin-bottom:28px;text-wrap:balance}
+  .founder-quote em{font-style:italic;color:var(--green)}
+  .founder-quote::before{content:"\201C";font-family:var(--serif);font-size:120px;color:var(--green-pale);line-height:0;position:relative;top:48px;left:-10px;display:block;height:0}
+  .founder-body{font-size:16px;color:var(--ink-soft);line-height:1.7;margin-bottom:16px;max-width:52ch}
+  .founder-meta{padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px;margin-top:24px}
+  .founder-name{font-family:var(--serif);font-size:22px;color:var(--ink);font-weight:500}
+  .founder-role{font-size:13px;color:var(--ink-soft);margin-top:4px;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px}
+  .linkedin-pill{background:var(--ink);color:var(--paper);padding:10px 18px;border-radius:999px;text-decoration:none;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:8px;transition:background 0.2s}
+  .linkedin-pill:hover{background:var(--green)}
+
+  /* BLOG */
+  .blog-section{padding:120px clamp(20px,5vw,56px);background:var(--cream);border-top:1px solid var(--line)}
+  .blog-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:48px;flex-wrap:wrap;gap:16px}
+  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .blog-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:12px;transition:all 0.2s;text-decoration:none;color:inherit}
+  .blog-card:hover{box-shadow:0 12px 32px -12px rgba(10,27,51,0.12);transform:translateY(-2px)}
+  .blog-cat{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--green);font-weight:500}
+  .blog-title{font-family:var(--serif);font-size:20px;color:var(--ink);line-height:1.25;font-weight:500;letter-spacing:-0.01em}
+  .blog-excerpt{font-size:13px;color:var(--ink-soft);line-height:1.6;flex:1}
+  .blog-read{font-family:var(--mono);font-size:11px;color:var(--ink-mute);text-transform:uppercase;letter-spacing:1px;margin-top:8px}
+
+  /* AUDIT */
+  .audit{background:var(--ink);color:#fff;padding:120px clamp(20px,5vw,56px);text-align:center;position:relative;overflow:hidden}
+  .audit::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,0.04) 1px,transparent 0);background-size:32px 32px;pointer-events:none}
+  .audit-inner{position:relative;z-index:1;max-width:680px;margin:0 auto}
+  .audit .eyebrow{color:var(--acid);justify-content:center}
+  .audit .eyebrow::before{background:var(--acid)}
+  .audit-title{font-family:var(--serif);font-size:clamp(38px,5vw,68px);line-height:1;letter-spacing:-0.03em;color:#fff;font-weight:400;margin-bottom:16px;text-wrap:balance}
+  .audit-title em{font-style:italic;color:var(--acid)}
+  .audit-sub{font-size:17px;color:rgba(255,255,255,0.6);line-height:1.65;max-width:48ch;margin:0 auto 40px;font-weight:400}
+  .audit-form{display:grid;grid-template-columns:1fr 1fr;gap:14px;max-width:560px;margin:0 auto}
+  .audit-input{padding:18px 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#fff;font-size:15px;font-family:var(--sans);outline:none;transition:border 0.2s}
+  .audit-input::placeholder{color:rgba(255,255,255,0.4)}
+  .audit-input:focus{border-color:var(--acid);background:rgba(255,255,255,0.08)}
+  .audit-select{padding:18px 20px;border-radius:999px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:15px;font-family:var(--sans);outline:none;-webkit-appearance:none;cursor:pointer}
+  .audit-select:focus{border-color:var(--acid)}
+  .audit-select option{background:var(--navy);color:#fff}
+  .audit-input.full,.audit-select.full{grid-column:1/-1}
+  .audit-btn{grid-column:1/-1;background:var(--acid);color:var(--ink);border:none;padding:20px;border-radius:999px;font-family:var(--sans);font-size:15px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:transform 0.2s}
+  .audit-btn:hover{transform:translateY(-2px)}
+  .audit-note{margin-top:16px;font-family:var(--mono);font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:rgba(255,255,255,0.5);padding:48px clamp(20px,5vw,56px);border-top:1px solid rgba(255,255,255,0.06)}
+  .footer-inner{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase}
+  .footer-inner a{color:rgba(255,255,255,0.5);text-decoration:none}
+  .footer-inner a:hover{color:var(--acid)}
+  .footer-links{display:flex;gap:24px;list-style:none;flex-wrap:wrap}
+  .footer-legal{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:0.5px;text-transform:none;max-width:60ch;line-height:1.6;margin-top:16px}
+  .footer-bottom{max-width:1400px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)}
+
+  /* RESPONSIVE */
+  @media (max-width:980px){
+    .hero h1{font-size:54px}
+    .hero-row{grid-template-columns:1fr}
+    .demo-body{grid-template-columns:1fr;min-height:auto}
+    .demo-side{display:none}
+    .demo-right{border:none;border-top:1px solid rgba(255,255,255,0.08)}
+    .demo-canvas{padding:16px}
+    .canvas-title{flex-direction:column;gap:8px;align-items:flex-start}
+    .wf-canvas{height:auto;display:flex;flex-direction:column;gap:10px;padding:4px 0}
+    .wf-edges{display:none}
+    .wf-node{position:relative!important;top:auto!important;left:auto!important;min-width:unset;width:100%}
+    .problem-grid{grid-template-columns:1fr}
+    .problem-card{border-right:none;border-bottom:1px solid var(--line);padding:32px 0!important}
+    .mission-body{grid-template-columns:1fr}
+    .vertical-panel{grid-template-columns:1fr}
+    .vp-grid{grid-template-columns:1fr}
+    .how-grid{grid-template-columns:1fr 1fr}
+    .bp-grid{grid-template-columns:1fr}
+    .bp-stack{aspect-ratio:unset!important;height:auto!important;perspective:none!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:12px!important;padding:4px 0!important}
+    .bp-layer{position:relative!important;top:auto!important;left:auto!important;transform:none!important;width:100%!important;height:auto!important;opacity:1!important;z-index:1!important;margin:0!important}
+    .bp-layer.l0,.bp-layer.l1,.bp-layer.l2,.bp-layer.l3{transform:none!important;opacity:1!important;border-color:rgba(255,255,255,0.16)!important;box-shadow:none!important}
+    .bp-layer.l2{border-color:var(--acid)!important}
+    .team-grid{grid-template-columns:1fr}
+    .pricing-grid{grid-template-columns:1fr}
+    .founder-grid{grid-template-columns:1fr;gap:40px}
+    .founder-img-wrap{max-width:100%;aspect-ratio:4/3}
+    .founder-meta{flex-direction:column;align-items:flex-start}
+    .blog-grid{grid-template-columns:1fr}
+    .blog-header{flex-direction:column;align-items:flex-start}
+    .audit-form{grid-template-columns:1fr}
+    .audit-input.full,.audit-select.full{grid-column:1}
+    .footer-inner{flex-direction:column;align-items:flex-start;gap:16px}
+    .footer-links{flex-wrap:wrap;gap:16px}
+    .nav-links{display:none}
+    .pricing-note{flex-direction:column}
+  }
+  @media (max-width:640px){
+    .how-grid{grid-template-columns:1fr}
+  }
+  @media (max-width:480px){
+    .hero h1{font-size:42px}
+    .section,.how-section,.verticals,.bp-section,.team-section,.pricing-section,.founder,.blog-section,.audit,.mission{padding:80px clamp(20px,5vw,56px)}
+    .btn-primary{width:100%;justify-content:center}
+    .hero-actions{width:100%}
+    .demo-panel{border-radius:16px}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">raemy<b>ai</b><span class="dot"></span></a>
+  <ul class="nav-links">
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#verticals">Verticals</a></li>
+    <li><a href="#team">Our Team</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="#audit" class="nav-cta">Free audit →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">AI Implementation for Small Business</div>
+    <h1>Small businesses<br>deserve<br><em>better tools.</em></h1>
+    <div class="hero-row">
+      <p class="hero-sub">Raemy AI helps small business owners implement, operate, and scale AI across their entire operation. Custom-built for your business. Guided by specialists who know your industry. No technical background required.</p>
+      <div class="hero-actions">
+        <a href="#audit" class="btn-primary">Get your free audit
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </a>
+        <a href="#how" class="btn-ghost">See how it works ↓</a>
+        <p class="hero-trust">30-minute audit · No commitment · No technical knowledge required</p>
+      </div>
+    </div>
+
+    <!-- LIVE DEMO PANEL -->
+    <div class="demo-panel">
+      <div class="demo-chrome">
+        <div class="demo-tabs">
+          <button class="demo-tab active">⊞ Workflows</button>
+          <button class="demo-tab">○ Inbox</button>
+          <button class="demo-tab">↗ Insights</button>
+          <button class="demo-tab">⚙ Blueprint</button>
+        </div>
+        <div class="demo-controls">
+          <span class="demo-status">Live · 3 workflows active</span>
+        </div>
+      </div>
+      <div class="demo-body">
+        <div class="demo-side">
+          <div class="side-section">
+            <div class="side-label">Active workflows</div>
+            <div class="side-item active"><span class="side-icon"></span>Client intake<span class="side-count">12</span></div>
+            <div class="side-item"><span class="side-icon" style="background:#FFB1C8"></span>Follow-up sequences<span class="side-count">7</span></div>
+            <div class="side-item"><span class="side-icon" style="background:#76EAD7"></span>No-show recovery<span class="side-count">3</span></div>
+            <div class="side-item"><span class="side-icon" style="background:#C8A3FF"></span>Invoice follow-up<span class="side-count">18</span></div>
+          </div>
+          <div class="side-section">
+            <div class="side-label">Status</div>
+            <div class="side-item"><span class="side-icon" style="background:#FFD66B"></span>Needs review<span class="side-count">2</span></div>
+            <div class="side-item"><span class="side-icon"></span>Completed today<span class="side-count">64</span></div>
+          </div>
+        </div>
+        <div class="demo-canvas">
+          <div class="canvas-title">
+            <div>
+              <h3>New inquiry → onboarded client</h3>
+              <p>// custom blueprint · auto-saves</p>
+            </div>
+            <button class="canvas-action">⊕ Add step</button>
+          </div>
+          <div class="wf-canvas">
+            <svg class="wf-edges" viewBox="0 0 600 360" preserveAspectRatio="none">
+              <path d="M 150 50 Q 200 50 220 100"/>
+              <path d="M 330 50 Q 320 90 290 100"/>
+              <path class="live" d="M 220 180 Q 250 200 290 220"/>
+              <path d="M 440 180 Q 410 200 350 220"/>
+              <path d="M 290 290 Q 260 310 220 330"/>
+            </svg>
+            <div class="wf-node trigger n1"><div class="wf-node-label"><span class="dot"></span>Trigger</div><div class="wf-node-title">New inquiry received</div><div class="wf-node-desc">→ web form · phone · referral</div></div>
+            <div class="wf-node action n2"><div class="wf-node-label"><span class="dot"></span>Action</div><div class="wf-node-title">AI intake summary</div><div class="wf-node-desc">→ classify + prioritize</div></div>
+            <div class="wf-node decision n3 running"><div class="wf-node-label"><span class="dot"></span>Decision · running</div><div class="wf-node-title">Route to specialist</div><div class="wf-node-desc">→ matching industry</div></div>
+            <div class="wf-node action n4"><div class="wf-node-label"><span class="dot"></span>Action</div><div class="wf-node-title">Engagement drafted</div><div class="wf-node-desc">→ AI in client voice</div></div>
+            <div class="wf-node output n5"><div class="wf-node-label"><span class="dot"></span>Output</div><div class="wf-node-title">Confirm + onboard</div><div class="wf-node-desc">→ SMS + email sequence</div></div>
+          </div>
+        </div>
+        <div class="demo-right">
+          <div class="right-card">
+            <div class="right-label">This month</div>
+            <div class="right-stat"><em>1,842</em></div>
+            <div class="right-meta">tasks automated · +22% MoM</div>
+          </div>
+          <div class="right-card">
+            <div class="right-label">Live event feed</div>
+            <div class="live-feed" id="liveFeed">
+              <div class="feed-item"><span class="feed-time">09:14</span><span class="feed-msg">Intake routed → <b>specialist</b></span></div>
+              <div class="feed-item"><span class="feed-time">09:12</span><span class="feed-msg">Follow-up sent · 4 leads</span></div>
+              <div class="feed-item"><span class="feed-time">09:09</span><span class="feed-msg">Quote <b>approved</b> · M. Torres</span></div>
+              <div class="feed-item"><span class="feed-time">09:06</span><span class="feed-msg">No-show recovered · K. James</span></div>
+              <div class="feed-item"><span class="feed-time">09:02</span><span class="feed-msg">Invoice: <b>paid</b> · $3,400</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Custom AI Implementation</span><span>Industry Specialist Network</span><span>No Technical Background Required</span><span>Houston-Based Team</span><span>Proven Industry Frameworks</span><span>Guided Transformation</span>
+    <span>Custom AI Implementation</span><span>Industry Specialist Network</span><span>No Technical Background Required</span><span>Houston-Based Team</span><span>Proven Industry Frameworks</span><span>Guided Transformation</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="section">
+  <div class="section-inner">
+    <div class="eyebrow">The problem</div>
+    <h2 class="section-title">AI is changing everything.<br><em>Most small businesses</em> are getting left behind.</h2>
+    <p class="section-sub">Enterprise companies have entire teams dedicated to AI adoption. Small businesses have a business to run. Raemy AI bridges that gap.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-num">01 · SPEED</div>
+        <h3 class="problem-title">AI is moving fast and you have a business to run.</h3>
+        <p class="problem-desc">Most small business owners know they need to adopt AI. They do not have the time, the team, or the technical knowledge to figure out where to start. Meanwhile the tools keep changing and the window keeps narrowing.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">02 · FIT</div>
+        <h3 class="problem-title">Generic tools do not solve specific problems.</h3>
+        <p class="problem-desc">Off-the-shelf AI tools are built for the average business. Your business is not average. Your workflows, your clients, your team, and your margins are specific to you. The implementation needs to be too.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">03 · GUIDANCE</div>
+        <h3 class="problem-title">Implementation without guidance leads to abandoned software.</h3>
+        <p class="problem-desc">Most small businesses that try to implement AI on their own end up with a half-configured tool nobody uses. The technology is not the hard part. The change management is.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+  <div class="mission-inner">
+    <div class="eyebrow">Why we exist</div>
+    <h2 class="mission-headline">Small businesses create the jobs.<br><em>They deserve the same leverage.</em></h2>
+    <div class="mission-body">
+      <div class="mission-text">
+        <p>Small businesses create the majority of jobs, most of the innovation, and most of the character of every community they operate in. They do it with less capital, fewer staff, and less infrastructure than anyone competing against them.</p>
+        <p>For too long, AI has been a tool for companies that could afford entire implementation teams. Raemy AI exists to change that.</p>
+        <p>We bring the expertise, the industry knowledge, and the hands-on implementation support so small business owners can access the same operational leverage that large companies have had for years. Not someday. Now.</p>
+      </div>
+      <div class="mission-stats">
+        <div class="mission-stat">
+          <div class="mission-stat-num"><em>2</em>/3</div>
+          <div class="mission-stat-label">New jobs created by small businesses</div>
+        </div>
+        <div class="mission-stat">
+          <div class="mission-stat-num">99.<em>9</em>%</div>
+          <div class="mission-stat-label">Of all US businesses are small businesses</div>
+        </div>
+        <div class="mission-stat">
+          <div class="mission-stat-num">&lt;<em>15</em>%</div>
+          <div class="mission-stat-label">Have meaningfully adopted AI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how">
+  <div class="section-inner">
+    <div class="eyebrow">How it works</div>
+    <h2 class="section-title">From audit to transformation<br>in <em>four steps.</em></h2>
+    <p class="section-sub">We do not drop software and walk away. We guide you through every stage of implementation and stay accountable to your results.</p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num"><em>01</em></div>
+        <div class="how-title">Free Operations Audit</div>
+        <p class="how-desc">We spend 30 minutes mapping your business. Where the time goes, where the revenue leaks, and where AI delivers the fastest measurable return. No technical knowledge required on your end.</p>
+        <div class="how-meta"><b>Free</b> · 30 minutes · no commitment</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num"><em>02</em></div>
+        <div class="how-title">Custom AI Blueprint</div>
+        <p class="how-desc">We design an AI system built specifically around your operation. We start with a proven framework developed from real pain points in your industry, then fine-tune every workflow to match exactly how your business works.</p>
+        <div class="how-meta"><b>Industry framework</b> · customized to you</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num"><em>03</em></div>
+        <div class="how-title">Expert Implementation</div>
+        <p class="how-desc">Our team of industry specialists builds and deploys your system. Whether your business is in healthcare, legal, trades, or hospitality, you get someone who has operated in your world, not a generalist figuring it out as they go.</p>
+        <div class="how-meta"><b>Industry specialist</b> · matched to your field</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num"><em>04</em></div>
+        <div class="how-title">Guided Transformation</div>
+        <p class="how-desc">Going live is the beginning, not the end. We guide your team through the transition, train them on the system, and stay accountable to results over the first 30 days and beyond.</p>
+        <div class="how-meta"><b>Ongoing</b> · 30-day accountability · expansion</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERTICALS -->
+<section class="verticals" id="verticals">
+  <div class="section-inner">
+    <div class="eyebrow">Who we serve</div>
+    <h2 class="section-title">Built for your industry.<br><em>Not adapted to it.</em></h2>
+    <p class="section-sub">Every vertical we serve has a dedicated specialist. Someone who has operated in that world, understands the specific workflows, and knows where AI delivers the highest return.</p>
+
+    <div class="vertical-tabs">
+      <button class="vtab active" data-tab="health">▶ Raemy Health</button>
+      <button class="vtab" data-tab="legal">▶ Raemy Legal</button>
+      <button class="vtab" data-tab="trades">▶ Raemy Trades</button>
+      <button class="vtab" data-tab="hospitality">▶ Raemy Hospitality</button>
+    </div>
+
+    <!-- HEALTH -->
+    <div class="vertical-panel" id="panel-health">
+      <div class="vp-content">
+        <h3>For health and wellness practices ready to <em>reclaim clinical time.</em></h3>
+        <p>Independent functional medicine clinics, med spas, integrative practices, chiropractic offices, and wellness studios. We automate the admin layer underneath your existing setup so your clinical team spends time on people, not paperwork.</p>
+        <div class="vp-grid">
+          <div class="vp-feat"><span class="vp-feat-num">01</span><span class="vp-feat-name">Client intake routing</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">02</span><span class="vp-feat-name">Prior auth tracking</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">03</span><span class="vp-feat-name">Appointment reminders</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">04</span><span class="vp-feat-name">No-show recovery</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">05</span><span class="vp-feat-name">Billing follow-up</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">06</span><span class="vp-feat-name">Staff task alerts</span></div>
+        </div>
+        <div class="vp-note">We start with a framework proven across independent health practices, then build around your specific workflows, your team, and your client experience.</div>
+      </div>
+      <div class="product-mock">
+        <div class="pm-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="url">raemyhealth · dashboard</span>
+          <span class="pm-status">live</span>
+        </div>
+        <div class="pm-content">
+          <div class="pm-hello">
+            <div><h4>Good morning, <em>Dr. Chen.</em></h4><p>Tuesday · 8:42 AM · 3 alerts cleared</p></div>
+            <span class="pm-pill">All workflows running</span>
+          </div>
+          <div class="pm-grid">
+            <div class="pm-stat"><div class="pm-stat-num"><em>14</em></div><div class="pm-stat-label">Clients today</div></div>
+            <div class="pm-stat"><div class="pm-stat-num">$<em>2.1</em>K</div><div class="pm-stat-label">Recovered · week</div></div>
+            <div class="pm-stat"><div class="pm-stat-num"><em>3.2</em>h</div><div class="pm-stat-label">Saved today</div></div>
+          </div>
+          <div class="pm-tasks">
+            <div class="pm-task done"><div class="check"></div><div class="pm-name">Reminders sent · 14 clients</div><div class="pm-meta">7:00 AM</div></div>
+            <div class="pm-task done"><div class="check"></div><div class="pm-name">Insurance verified · M. Santos</div><div class="pm-meta">7:14 AM</div></div>
+            <div class="pm-task live"><div class="check"></div><div class="pm-name">Prior auth · J. Williams · Aetna</div><div class="pm-meta">running</div></div>
+            <div class="pm-task"><div class="check"></div><div class="pm-name">Follow-up queued · 3 no-shows</div><div class="pm-meta">10:00 AM</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEGAL -->
+    <div class="vertical-panel" id="panel-legal" style="display:none">
+      <div class="vp-content">
+        <h3>For law firms ready to <em>stop losing leads</em> to slow follow-up.</h3>
+        <p>Independent and small law firms managing high lead volume, complex intake, deadline tracking, and client communication manually. We automate the intake and coordination layer so your attorneys spend time on the law, not the logistics.</p>
+        <div class="vp-grid">
+          <div class="vp-feat"><span class="vp-feat-num">01</span><span class="vp-feat-name">Lead intake screening</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">02</span><span class="vp-feat-name">Engagement letter drafting</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">03</span><span class="vp-feat-name">Deadline alert system</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">04</span><span class="vp-feat-name">Client follow-up sequences</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">05</span><span class="vp-feat-name">Invoice and billing follow-up</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">06</span><span class="vp-feat-name">Pipeline visibility</span></div>
+        </div>
+        <div class="vp-note">We start with a framework proven across small and independent law firms, then configure every workflow around how your practice actually operates.</div>
+      </div>
+      <div class="product-mock">
+        <div class="pm-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="url">raemylegal · pipeline</span>
+          <span class="pm-status">live</span>
+        </div>
+        <div class="pm-content">
+          <div class="pm-hello">
+            <div><h4>Good morning, <em>Marcus.</em></h4><p>Monday · 9:00 AM · 3 new leads overnight</p></div>
+            <span class="pm-pill">Pipeline healthy</span>
+          </div>
+          <div class="pm-grid">
+            <div class="pm-stat"><div class="pm-stat-num"><em>18</em></div><div class="pm-stat-label">Leads · month</div></div>
+            <div class="pm-stat"><div class="pm-stat-num"><em>67</em>%</div><div class="pm-stat-label">Conversion rate</div></div>
+            <div class="pm-stat"><div class="pm-stat-num"><em>6</em>min</div><div class="pm-stat-label">Avg response</div></div>
+          </div>
+          <div class="pm-tasks">
+            <div class="pm-task done"><div class="check"></div><div class="pm-name">Lead screened · D. Nguyen · high value</div><div class="pm-meta">8:52 AM</div></div>
+            <div class="pm-task live"><div class="check"></div><div class="pm-name">Engagement letter drafted · P. Okon</div><div class="pm-meta">running</div></div>
+            <div class="pm-task"><div class="check"></div><div class="pm-name">Deadline alert · Vasquez motion · 2 days</div><div class="pm-meta">urgent</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRADES -->
+    <div class="vertical-panel" id="panel-trades" style="display:none">
+      <div class="vp-content">
+        <h3>For trades businesses ready to <em>stop losing jobs</em> to slow follow-up.</h3>
+        <p>Independent HVAC, plumbing, mechanical, construction, and home services companies managing job scheduling, quote follow-up, and client communication manually. We automate the coordination layer so your team stays on the job, not the phone.</p>
+        <div class="vp-grid">
+          <div class="vp-feat"><span class="vp-feat-num">01</span><span class="vp-feat-name">Inbound call routing</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">02</span><span class="vp-feat-name">Job scheduling</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">03</span><span class="vp-feat-name">Quote follow-up sequences</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">04</span><span class="vp-feat-name">Appointment reminders</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">05</span><span class="vp-feat-name">Post-job review requests</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">06</span><span class="vp-feat-name">Invoice follow-up</span></div>
+        </div>
+        <div class="vp-note">We start with a framework proven across independent trades and contracting businesses, then build around your specific service model, team structure, and client relationships.</div>
+      </div>
+      <div class="product-mock">
+        <div class="pm-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="url">raemytrades · jobs</span>
+          <span class="pm-status">live</span>
+        </div>
+        <div class="pm-content">
+          <div class="pm-hello">
+            <div><h4>Good morning, <em>Carlos.</em></h4><p>Monday · Houston · 94°F · peak season</p></div>
+            <span class="pm-pill">9 jobs today</span>
+          </div>
+          <div class="pm-grid">
+            <div class="pm-stat"><div class="pm-stat-num">$<em>8.4</em>K</div><div class="pm-stat-label">Revenue today</div></div>
+            <div class="pm-stat"><div class="pm-stat-num">$<em>34</em>K</div><div class="pm-stat-label">Quotes pending</div></div>
+            <div class="pm-stat"><div class="pm-stat-num"><em>4</em></div><div class="pm-stat-label">Techs active</div></div>
+          </div>
+          <div class="pm-tasks">
+            <div class="pm-task done"><div class="check"></div><div class="pm-name">Reminders sent · 9 jobs confirmed</div><div class="pm-meta">7:00 AM</div></div>
+            <div class="pm-task live"><div class="check"></div><div class="pm-name">Emergency dispatch · Rodriguez · AC down</div><div class="pm-meta">running</div></div>
+            <div class="pm-task"><div class="check"></div><div class="pm-name">Quote follow-up · Patel · $14,200 · day 14</div><div class="pm-meta">10:00 AM</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HOSPITALITY -->
+    <div class="vertical-panel" id="panel-hospitality" style="display:none">
+      <div class="vp-content">
+        <h3>For hospitality operations ready to <em>deliver the experience</em> not the admin.</h3>
+        <p>Independent boutique hotels, restaurants, and service operations competing against brands with full technology teams. We automate the guest communication and coordination layer so your team focuses on the experience, not the administration.</p>
+        <div class="vp-grid">
+          <div class="vp-feat"><span class="vp-feat-num">01</span><span class="vp-feat-name">Guest inquiry routing</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">02</span><span class="vp-feat-name">Reservation confirmation</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">03</span><span class="vp-feat-name">No-show recovery</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">04</span><span class="vp-feat-name">Review response drafting</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">05</span><span class="vp-feat-name">Shift handover notes</span></div>
+          <div class="vp-feat"><span class="vp-feat-num">06</span><span class="vp-feat-name">VIP guest preparation</span></div>
+        </div>
+        <div class="vp-note">We start with a framework proven across independent hospitality operations, then customize every system to match your property, your team, and your guest experience.</div>
+      </div>
+      <div class="product-mock">
+        <div class="pm-bar">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <span class="url">raemyhospitality · dashboard</span>
+          <span class="pm-status">live</span>
+        </div>
+        <div class="pm-content">
+          <div class="pm-hello">
+            <div><h4>Good morning, <em>Daniela.</em></h4><p>Monday · 38/42 rooms · 3 VIP arrivals</p></div>
+            <span class="pm-pill">All workflows running</span>
+          </div>
+          <div class="pm-grid">
+            <div class="pm-stat"><div class="pm-stat-num"><em>90</em>%</div><div class="pm-stat-label">Occupancy tonight</div></div>
+            <div class="pm-stat"><div class="pm-stat-num">$<em>348</em></div><div class="pm-stat-label">ADR tonight</div></div>
+            <div class="pm-stat"><div class="pm-stat-num"><em>3</em></div><div class="pm-stat-label">Reviews drafted</div></div>
+          </div>
+          <div class="pm-tasks">
+            <div class="pm-task done"><div class="check"></div><div class="pm-name">VIP prep generated · Hartwell anniversary</div><div class="pm-meta">9:02 AM</div></div>
+            <div class="pm-task live"><div class="check"></div><div class="pm-name">Review response drafted · 5-star Google</div><div class="pm-meta">running</div></div>
+            <div class="pm-task"><div class="check"></div><div class="pm-name">Pre-arrival sequence · 14 arrivals</div><div class="pm-meta">2:00 PM</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:32px;font-size:14px;color:var(--ink-soft);padding:20px;background:var(--paper);border:1px solid var(--line);border-radius:12px;max-width:60ch">
+      <b style="color:var(--ink)">Don't see your industry?</b> If you run a small business with under 50 employees, we can almost certainly help. Book a free audit and we will tell you honestly whether we are the right fit.
+    </p>
+  </div>
+</section>
+
+<!-- BLUEPRINT -->
+<section class="bp-section" id="blueprint">
+  <div class="section-inner">
+    <div class="eyebrow">The Operations Blueprint</div>
+    <h2 class="section-title">Your business has a brain.<br><em>We help your AI use it.</em></h2>
+    <div class="bp-grid">
+      <div class="bp-text">
+        <p>Every business has critical knowledge scattered across people's heads, old emails, and unwritten rules. AI cannot run on that. The Operations Blueprint captures and structures that knowledge so your automation runs on how your business actually works, not a generic template.</p>
+        <p>The result is a system that feels like it was built specifically for your business. Because it was.</p>
+        <div class="bp-focus-label">Currently viewing</div>
+        <h4 class="bp-focus-title" id="bpFocusTitle">Decision Rules</h4>
+        <p id="bpFocusDesc" style="margin-top:8px;font-size:14px;color:rgba(255,255,255,0.55)">When to act, when to escalate. The if-then logic your AI needs to make smart calls without human intervention at every step.</p>
+        <div class="bp-controls" id="bpControls">
+          <button class="bp-btn" data-jump="0">01</button>
+          <button class="bp-btn" data-jump="1">02</button>
+          <button class="bp-btn active" data-jump="2">03</button>
+          <button class="bp-btn" data-jump="3">04</button>
+        </div>
+      </div>
+      <div>
+        <div class="bp-stack">
+          <div class="bp-layer l0" data-bp="0">
+            <div class="bp-layer-head"><span class="bp-layer-num">01 · Workflow Map</span><span class="bp-layer-tag">Living document</span></div>
+            <div class="bp-layer-title">How your processes really run</div>
+            <div class="bp-layer-desc">Including every workaround your team has built around broken systems.</div>
+          </div>
+          <div class="bp-layer l1" data-bp="1">
+            <div class="bp-layer-head"><span class="bp-layer-num">02 · Exception Library</span><span class="bp-layer-tag">Edge cases</span></div>
+            <div class="bp-layer-title">Unwritten rules only experience captures</div>
+            <div class="bp-layer-desc">The institutional knowledge your AI needs to get things right from day one.</div>
+          </div>
+          <div class="bp-layer l2" data-bp="2">
+            <div class="bp-layer-head"><span class="bp-layer-num">03 · Decision Rules</span><span class="bp-layer-tag">Logic</span></div>
+            <div class="bp-layer-title">When to act, when to escalate</div>
+            <div class="bp-layer-desc">If-then logic for smart calls: automate, escalate, or hand to a human.</div>
+          </div>
+          <div class="bp-layer l3" data-bp="3">
+            <div class="bp-layer-head"><span class="bp-layer-num">04 · Communication DNA</span><span class="bp-layer-tag">Voice</span></div>
+            <div class="bp-layer-title">Sound like your business</div>
+            <div class="bp-layer-desc">Tone, timing, channel. Your AI matches your voice, not a generic template.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team-section" id="team">
+  <div class="section-inner">
+    <div class="eyebrow">Our team</div>
+    <h2 class="section-title">You get the right expert.<br><em>Not the available one.</em></h2>
+    <p class="section-sub">Raemy AI is built on a network of industry specialists. Every client is matched with someone who has operated in their specific world, not a generalist who will figure it out on the way.</p>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-card-img">
+          <img src="founder.jpg" alt="Nikit Bhatt, Founder of Raemy AI">
+        </div>
+        <div class="team-card-body">
+          <div class="team-card-name">Nikit Bhatt</div>
+          <div class="team-card-role">Founder and CEO</div>
+          <p class="team-card-bio">15 years running operations across healthcare, hospitality, technology, and public safety. From scaling operations from launch to multi-million dollar revenue to building AI-native companies from scratch, Nikit brings operator-level execution to every engagement. He has lived inside the businesses Raemy AI serves and built the systems that run them.</p>
+          <a href="https://www.linkedin.com/in/nikit-bhatt" target="_blank" rel="noopener noreferrer" class="team-card-link">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Connect on LinkedIn
+          </a>
+        </div>
+      </div>
+      <div class="team-coming">
+        <div class="team-coming-label">Health and Wellness Lead</div>
+        <div class="team-coming-title">Specialist joining soon</div>
+        <p class="team-coming-desc">Our Raemy Health specialist brings deep expertise in healthcare administration and independent practice operations. Every Raemy Health client works directly with someone who has operated inside a clinical environment.</p>
+      </div>
+      <div class="team-coming">
+        <div class="team-coming-label">Join our specialist network</div>
+        <div class="team-coming-title">Experienced operator?</div>
+        <p class="team-coming-desc">We are building a network of industry specialists across legal, trades, hospitality, and beyond. If you have deep operational experience in your field and want to explore joining the Raemy AI team, reach out at <a href="mailto:nikit@raemyai.com" style="color:var(--green);font-weight:500">nikit@raemyai.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-inner">
+    <div class="eyebrow">Engagement tiers</div>
+    <h2 class="section-title">Most clients recover their investment<br><em>within the first 60 days.</em></h2>
+    <p class="section-sub">Every engagement includes a Blueprint Session, full implementation, and guided onboarding. We start with an industry-proven framework and customize it to your specific operation. Pricing is based on your business size, workflow complexity, and industry.</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Starter</div>
+        <div class="pricing-audit-line">Book a free audit to get your quote</div>
+        <p class="pricing-desc">For small businesses ready to automate their highest-impact workflows and start seeing measurable results immediately.</p>
+        <ul class="pricing-features">
+          <li>3 core workflow automations</li>
+          <li>Operations Blueprint Session included</li>
+          <li>Branded operations dashboard</li>
+          <li>Up to 5 team member accounts</li>
+          <li>Monthly performance report</li>
+          <li>Email support</li>
+        </ul>
+        <a href="https://calendly.com/nikit-raemyai/30min" target="_blank" class="pricing-cta">Book free audit</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Most Popular</div>
+        <div class="pricing-tier">Growth</div>
+        <div class="pricing-audit-line">Book a free audit to get your quote</div>
+        <p class="pricing-desc">For growing businesses with multiple service lines and a team ready to scale without adding headcount.</p>
+        <ul class="pricing-features">
+          <li>Unlimited workflow automations</li>
+          <li>Operations Blueprint Session included</li>
+          <li>White-labeled branded portal</li>
+          <li>Up to 15 team member accounts</li>
+          <li>Advanced system integrations</li>
+          <li>Weekly performance reviews</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="https://calendly.com/nikit-raemyai/30min" target="_blank" class="pricing-cta">Book free audit</a>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Enterprise</div>
+        <div class="pricing-audit-line">Book a free audit to get your quote</div>
+        <p class="pricing-desc">For multi-location businesses and larger operations with complex requirements and dedicated account management.</p>
+        <ul class="pricing-features">
+          <li>Everything in Growth</li>
+          <li>Unlimited team member accounts</li>
+          <li>Multi-location dashboard</li>
+          <li>Custom workflow development</li>
+          <li>Dedicated account manager</li>
+          <li>SLA guarantee</li>
+        </ul>
+        <a href="https://calendly.com/nikit-raemyai/30min" target="_blank" class="pricing-cta">Book free audit</a>
+      </div>
+    </div>
+
+    <div class="pricing-note">
+      <p><b>One-time implementation fee applies to all tiers.</b> Every engagement begins with a structured implementation phase covering your Blueprint Session, initial framework configuration, and first workflow deployment. Add an industry specialist to your implementation for maximum impact from day one.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div class="impl-fee-box">
+          <div class="fee-label">Standard</div>
+          <div class="fee-amount">$500</div>
+          <div class="fee-sub">Implementation fee</div>
+        </div>
+        <div class="impl-fee-box">
+          <div class="fee-label">With specialist</div>
+          <div class="fee-amount">$750</div>
+          <div class="fee-sub">Implementation fee</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="margin-top:20px;font-size:13px;color:var(--ink-mute);text-align:center;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px">Minimum commitment 3 months · 6-month commitment receives one month complimentary</p>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder">
+  <div class="founder-grid">
+    <div>
+      <div class="founder-img-wrap">
+        <img src="founder.jpg" alt="Nikit Bhatt, Founder of Raemy AI">
+        <div class="founder-tag">Founder · Houston, TX</div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow">From the founder</div>
+      <div class="founder-quote">Built by an operator.<br><em>For operators.</em></div>
+      <p class="founder-body">"I spent 15 years watching brilliant people lose their best hours to admin work that should have been automated years ago. I built Raemy AI because small businesses deserve better. Not eventually. Now."</p>
+      <p class="founder-body">I have managed multi-million dollar operations, scaled businesses from startup to enterprise, and led teams across industries and continents. In every single one of those roles, the same problem kept showing up. Brilliant people spending their best hours on work that had nothing to do with why they built their business.</p>
+      <p class="founder-body">The large companies I worked alongside had entire teams dedicated to solving this. Small businesses had one person wearing every hat. Raemy AI exists to close that gap.</p>
+      <div class="founder-meta">
+        <div>
+          <div class="founder-name">Nikit Bhatt</div>
+          <div class="founder-role">Founder, Raemy AI · Houston, TX</div>
+        </div>
+        <a href="https://www.linkedin.com/in/nikit-bhatt" target="_blank" rel="noopener noreferrer" class="linkedin-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Connect on LinkedIn
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blog-section">
+  <div class="section-inner">
+    <div class="blog-header">
+      <div>
+        <div class="eyebrow">From the blog</div>
+        <h2 class="section-title" style="margin-bottom:0">Insights for <em>smarter operations.</em></h2>
+      </div>
+      <a href="blog.html" style="font-size:13px;font-weight:500;color:var(--ink);text-decoration:none;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px;white-space:nowrap">View all posts →</a>
+    </div>
+    <div class="blog-grid" id="blogGrid">
+      <a href="post.html?slug=why-independent-clinics-losing-revenue-admin" class="blog-card">
+        <div class="blog-cat">Healthcare Operations</div>
+        <div class="blog-title">Why Independent Clinics Are Losing $50K Per Year to Admin Work</div>
+        <p class="blog-excerpt">Practitioners spend 2 hours on paperwork for every hour of patient care. For an independent practice, that math is quietly devastating.</p>
+        <div class="blog-read">5 min read →</div>
+      </a>
+      <a href="post.html?slug=ai-automation-small-business-where-to-start" class="blog-card">
+        <div class="blog-cat">AI and Automation</div>
+        <div class="blog-title">AI Automation for Small Businesses: Where to Actually Start</div>
+        <p class="blog-excerpt">Every small business owner has heard they need to automate. Almost none of them know where to start without wasting money on tools they won't use.</p>
+        <div class="blog-read">6 min read →</div>
+      </a>
+      <a href="post.html?slug=ai-operations-independent-hotels-restaurants-houston" class="blog-card">
+        <div class="blog-cat">AI and Automation</div>
+        <div class="blog-title">Why Independent Operators Are Finally Adopting AI Operations</div>
+        <p class="blog-excerpt">82% of hotels plan to expand AI use in 2026. But most solutions are built for chains, not independent operators. Here is what automation actually looks like.</p>
+        <div class="blog-read">8 min read →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIT CTA -->
+<section class="audit" id="audit">
+  <div class="audit-inner">
+    <div class="eyebrow">Free operations audit</div>
+    <h2 class="audit-title">Find out exactly where your business<br>is leaving time and money <em>behind.</em></h2>
+    <p class="audit-sub">In 30 minutes we will map your current workflows, identify your highest-value AI opportunities, and give you an honest assessment of what a custom implementation would look like for your specific business. No pitch. No commitment. Just clarity.</p>
+    <form class="audit-form" id="auditForm">
+      <input id="auditName" class="audit-input" placeholder="Your full name" required>
+      <input id="auditCompany" class="audit-input" placeholder="Company name" required>
+      <select id="auditIndustry" class="audit-select full">
+        <option value="" disabled selected>Select your industry</option>
+        <option value="Healthcare and Wellness">Healthcare and Wellness</option>
+        <option value="Legal">Legal</option>
+        <option value="Trades and Construction">Trades and Construction</option>
+        <option value="Hospitality">Hospitality</option>
+        <option value="Other">Other</option>
+      </select>
+      <input id="auditEmail" class="audit-input full" type="email" placeholder="Your work email" required>
+      <button type="submit" class="audit-btn">Book my free audit
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7H13M13 7L7 1M13 7L7 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </form>
+    <p class="audit-note">No sales pressure · No commitment · If we are not the right fit, we will tell you that too</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" style="font-family:var(--serif);font-size:20px;font-weight:500;color:rgba(255,255,255,0.8);letter-spacing:-0.3px">raemyai</a>
+    <ul class="footer-links">
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#verticals">Verticals</a></li>
+      <li><a href="#team">Our Team</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="#audit">Free Audit</a></li>
+    </ul>
+    <span>Houston, TX · 2026</span>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-legal">Raemy AI uses artificial intelligence to automate business workflows. AI-generated outputs are reviewed and managed by our team and do not constitute clinical, legal, or professional advice. Complex operations, simplified.</p>
+  </div>
+</footer>
+
+<script>
+// VERTICAL TABS
+const tabs = document.querySelectorAll('.vtab');
+const panels = document.querySelectorAll('.vertical-panel');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const target = tab.dataset.tab;
+    panels.forEach(p => p.style.display = 'none');
+    document.getElementById('panel-' + target).style.display = 'grid';
+  });
+});
+
+// BLUEPRINT LAYERS
+const layers = document.querySelectorAll('.bp-layer');
+const btns = document.querySelectorAll('.bp-btn');
+const titles = { 0:'Workflow Map', 1:'Exception Library', 2:'Decision Rules', 3:'Communication DNA' };
+const descs = {
+  0:'How your core processes actually run today, including every workaround your team has built around broken systems.',
+  1:'The unwritten rules only experienced people know. Edge cases, special handling requirements, and institutional memory your AI needs.',
+  2:'When to act, when to escalate. The if-then logic your AI needs to make smart calls without human intervention at every step.',
+  3:'How your business communicates. Tone, timing, channel preferences, and the situations where only a human touch will do.'
+};
+
+function setActive(i) {
+  layers.forEach((l, idx) => {
+    l.classList.remove('l0','l1','l2','l3');
+    const rel = (idx - i + 4) % 4;
+    l.classList.add('l' + rel);
+  });
+  btns.forEach(b => b.classList.remove('active'));
+  btns[i].classList.add('active');
+  document.getElementById('bpFocusTitle').textContent = titles[i];
+  document.getElementById('bpFocusDesc').textContent = descs[i];
+}
+
+layers.forEach((l, i) => l.addEventListener('click', () => setActive(parseInt(l.dataset.bp))));
+btns.forEach((b, i) => b.addEventListener('click', () => setActive(parseInt(b.dataset.jump))));
+
+let bpAuto = 2;
+setInterval(() => { bpAuto = (bpAuto + 1) % 4; setActive(bpAuto); }, 3500);
+
+// LIVE FEED
+const feeds = [
+  { time:'09:18', msg:'Intake routed <b>automatically</b> · D. Nguyen' },
+  { time:'09:16', msg:'Quote follow-up sent · $8,400 pending' },
+  { time:'09:14', msg:'Review response <b>drafted</b> · 5-star Google' },
+  { time:'09:11', msg:'No-show recovered · rebooking confirmed' },
+  { time:'09:08', msg:'Invoice <b>paid</b> · automated reminder worked' },
+  { time:'09:05', msg:'Lead screened · <b>high priority</b> · routed' },
+];
+let fi = 0;
+setInterval(() => {
+  const feed = document.getElementById('liveFeed');
+  const div = document.createElement('div');
+  div.className = 'feed-item';
+  div.innerHTML = `<span class="feed-time">${feeds[fi].time}</span><span class="feed-msg">${feeds[fi].msg}</span>`;
+  feed.insertBefore(div, feed.firstChild);
+  if (feed.children.length > 5) feed.removeChild(feed.lastChild);
+  fi = (fi + 1) % feeds.length;
+}, 4000);
+
+// AUDIT FORM
+document.getElementById('auditForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('auditName').value;
+  const company = document.getElementById('auditCompany').value;
+  const email = document.getElementById('auditEmail').value;
+  const industry = document.getElementById('auditIndustry').value;
+  const base = 'https://calendly.com/nikit-raemyai/30min';
+  const params = new URLSearchParams();
+  if (name) params.set('name', name);
+  if (email) params.set('email', email);
+  if (company) params.set('a1', company);
+  if (industry) params.set('a2', industry);
+  window.open(base + '?' + params.toString(), '_blank');
+});
+
+// TWEAK DEFAULTS for accent color
+const TWEAK_DEFAULTS = {"accent":"#C6F36A","density":"default"};
+let tweaks = {...TWEAK_DEFAULTS};
+function applyTweaks() {
+  document.documentElement.style.setProperty('--acid', tweaks.accent);
+  const padMap = {loose:'160px', default:'120px', dense:'80px'};
+  document.querySelectorAll('.section,.verticals,.mission,.how-section,.bp-section,.team-section,.pricing-section,.blog-section,.founder,.audit').forEach(s => {
+    s.style.paddingTop = padMap[tweaks.density];
+    s.style.paddingBottom = padMap[tweaks.density];
+  });
+}
+applyTweaks();
+</script>
+</body>
+</html>
