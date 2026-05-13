@@ -243,14 +243,15 @@ for (const post of posts) {
 console.log(`Wrote ${writtenCount} post pages to /posts/`);
 
 // Generate sitemap
+const today = new Date().toISOString().slice(0, 10);
 const staticUrls = [
-  { loc: `${SITE}/`, changefreq: 'weekly', priority: '1.0' },
-  { loc: `${SITE}/index.html`, changefreq: 'weekly', priority: '1.0' },
-  { loc: `${SITE}/health.html`, changefreq: 'monthly', priority: '0.9' },
-  { loc: `${SITE}/legal.html`, changefreq: 'monthly', priority: '0.9' },
-  { loc: `${SITE}/trades.html`, changefreq: 'monthly', priority: '0.9' },
-  { loc: `${SITE}/hospitality.html`, changefreq: 'monthly', priority: '0.9' },
-  { loc: `${SITE}/blog.html`, changefreq: 'weekly', priority: '0.8' }
+  { loc: `${SITE}/`, lastmod: today, changefreq: 'weekly', priority: '1.0' },
+  { loc: `${SITE}/index.html`, lastmod: today, changefreq: 'weekly', priority: '1.0' },
+  { loc: `${SITE}/health.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
+  { loc: `${SITE}/legal.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
+  { loc: `${SITE}/trades.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
+  { loc: `${SITE}/hospitality.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
+  { loc: `${SITE}/blog.html`, lastmod: today, changefreq: 'weekly', priority: '0.8' }
 ];
 
 const postUrls = posts.map(p => ({
