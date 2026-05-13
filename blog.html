@@ -3,7 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog — Raemy AI</title>
+<title>Blog — Operations Insights for Small Business | Raemy AI</title>
+<meta name="description" content="Weekly insights on AI implementation, healthcare operations, hospitality automation, legal practice operations, and trades workflow — written for founders, not technologists.">
+<meta name="keywords" content="AI for small business, healthcare operations, AI automation, medical practice automation, Houston AI, prior authorization, no-show reduction">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="https://raemyai.com/blog.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog — Operations Insights for Small Business | Raemy AI">
+<meta property="og:description" content="Weekly insights on AI implementation, healthcare operations, and automation — written for founders.">
+<meta property="og:url" content="https://raemyai.com/blog.html">
+<meta property="og:site_name" content="Raemy AI">
+<meta property="og:image" content="https://raemyai.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Blog — Operations Insights for Small Business | Raemy AI">
+<meta name="twitter:description" content="Weekly insights on AI implementation, healthcare operations, and automation.">
+<meta name="twitter:image" content="https://raemyai.com/og-image.png">
+
+<script type="application/ld+json" id="blog-schema"></script>
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -36,20 +54,16 @@
   }
   .nav-logo { font-family: var(--serif); font-size: 22px; color: var(--navy); text-decoration: none; }
   .nav-logo span { color: var(--green-mid); }
-  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
   .nav-links a { font-size: 14px; color: var(--gray-600); text-decoration: none; transition: color 0.2s; }
   .nav-links a:hover { color: var(--navy); }
   .nav-cta { background: var(--navy) !important; color: var(--white) !important; padding: 10px 22px !important; border-radius: 6px !important; font-weight: 500 !important; }
 
-  .blog-hero {
-    padding: 140px 5% 80px;
-    background: var(--cream);
-    border-bottom: 1px solid var(--gray-200);
-  }
+  .blog-hero { padding: 140px 5% 80px; background: var(--cream); border-bottom: 1px solid var(--gray-200); }
   .blog-hero-inner { max-width: 1200px; margin: 0 auto; }
   .eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--green-mid); margin-bottom: 16px; }
   .blog-hero h1 { font-family: var(--serif); font-size: clamp(36px, 4vw, 52px); color: var(--navy); line-height: 1.15; letter-spacing: -0.5px; margin-bottom: 16px; }
-  .blog-hero p { font-size: 17px; color: var(--gray-600); font-weight: 300; max-width: 520px; }
+  .blog-hero p { font-size: 17px; color: var(--gray-600); font-weight: 300; max-width: 580px; }
 
   .filter-bar { padding: 24px 5%; border-bottom: 1px solid var(--gray-200); background: var(--white); position: sticky; top: 68px; z-index: 50; }
   .filter-inner { max-width: 1200px; margin: 0 auto; display: flex; gap: 12px; flex-wrap: wrap; }
@@ -67,8 +81,7 @@
   .featured-post h2 a:hover { color: var(--green-mid); }
   .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
   .post-category { font-size: 12px; font-weight: 500; background: var(--green-pale); color: var(--green); padding: 3px 10px; border-radius: 4px; }
-  .post-date { font-size: 13px; color: var(--gray-400); }
-  .post-read { font-size: 13px; color: var(--gray-400); }
+  .post-date, .post-read { font-size: 13px; color: var(--gray-400); }
   .post-excerpt { font-size: 15px; color: var(--gray-600); line-height: 1.7; font-weight: 300; margin-bottom: 24px; }
   .read-more { color: var(--navy); font-size: 14px; font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
   .read-more:hover { gap: 10px; color: var(--green-mid); }
@@ -86,6 +99,7 @@
   .post-card h3 a:hover { color: var(--green-mid); }
   .post-card .post-excerpt { font-size: 14px; flex: 1; }
   .post-card .read-more { margin-top: 20px; }
+  .post-card.is-hidden { display: none; }
 
   .newsletter { background: var(--navy); padding: 80px 5%; margin-top: 60px; border-radius: 16px; margin-left: 5%; margin-right: 5%; margin-bottom: 60px; }
   .newsletter-inner { max-width: 560px; margin: 0 auto; text-align: center; }
@@ -101,12 +115,10 @@
   .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
   .footer-logo { font-family: var(--serif); font-size: 20px; color: var(--white); text-decoration: none; }
   .footer-logo span { color: var(--green-light); }
-  .footer-links { display: flex; gap: 28px; list-style: none; }
+  .footer-links { display: flex; gap: 28px; list-style: none; flex-wrap: wrap; }
   .footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: rgba(255,255,255,0.8); }
   .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); width: 100%; text-align: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
-
-  .hidden { display: none; }
 
   @media (max-width: 900px) {
     .featured-post { grid-template-columns: 1fr; }
@@ -120,172 +132,181 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">raemy<span>ai</span></a>
+  <a href="/index.html" class="nav-logo">raemy<span>ai</span></a>
   <ul class="nav-links">
-    <li><a href="index.html#solutions">Solutions</a></li>
-    <li><a href="index.html#how-it-works">How It Works</a></li>
-    <li><a href="index.html#pricing">Pricing</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="index.html#audit" class="nav-cta">Get Free Audit</a></li>
+    <li><a href="/health.html">Health</a></li>
+    <li><a href="/legal.html">Legal</a></li>
+    <li><a href="/trades.html">Trades</a></li>
+    <li><a href="/hospitality.html">Hospitality</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/index.html#audit" class="nav-cta">Get Free Audit</a></li>
   </ul>
 </nav>
 
-<div class="blog-hero">
+<header class="blog-hero">
   <div class="blog-hero-inner">
     <div class="eyebrow">Insights & Resources</div>
     <h1>Operational intelligence<br>for growing businesses.</h1>
-    <p>Weekly insights on healthcare operations, AI automation, and building efficient service businesses — written for founders, not technologists.</p>
+    <p>Weekly insights on healthcare operations, AI automation, hospitality, legal practice operations, and trades workflow — written for founders, not technologists.</p>
   </div>
-</div>
+</header>
 
 <div class="filter-bar">
   <div class="filter-inner">
-    <button class="filter-btn active" onclick="filterPosts('all', this)">All Posts</button>
-    <button class="filter-btn" onclick="filterPosts('Healthcare Operations', this)">Healthcare Operations</button>
-    <button class="filter-btn" onclick="filterPosts('AI & Automation', this)">AI & Automation</button>
+    <button class="filter-btn active" data-filter="all">All Posts</button>
+    <button class="filter-btn" data-filter="Healthcare Operations">Healthcare Operations</button>
+    <button class="filter-btn" data-filter="AI &amp; Automation">AI &amp; Automation</button>
   </div>
 </div>
 
-<div class="blog-grid-section">
+<main class="blog-grid-section">
   <div class="blog-grid-inner">
     <div id="featured-container"></div>
     <div class="posts-grid" id="posts-grid"></div>
   </div>
-</div>
+</main>
 
-<div class="newsletter">
+<section class="newsletter">
   <div class="newsletter-inner">
     <div class="eyebrow" style="color: var(--green-light);">Weekly Insights</div>
     <h2>Stay ahead of the curve.</h2>
     <p>One email per week. Healthcare operations, AI automation, and practical insights for founder-led businesses. No spam, ever.</p>
-    <div class="newsletter-form">
+    <form class="newsletter-form" onsubmit="event.preventDefault()">
       <input type="email" class="newsletter-input" placeholder="Your work email">
       <button class="newsletter-btn">Subscribe</button>
-    </div>
+    </form>
   </div>
-</div>
+</section>
 
 <footer>
   <div class="footer-inner">
-    <a href="index.html" class="footer-logo">raemy<span>ai</span></a>
+    <a href="/index.html" class="footer-logo">raemy<span>ai</span></a>
     <ul class="footer-links">
-      <li><a href="index.html#solutions">Solutions</a></li>
-      <li><a href="index.html#how-it-works">How It Works</a></li>
-      <li><a href="index.html#pricing">Pricing</a></li>
-      <li><a href="blog.html">Blog</a></li>
-      <li><a href="index.html#audit">Free Audit</a></li>
+      <li><a href="/health.html">Health</a></li>
+      <li><a href="/legal.html">Legal</a></li>
+      <li><a href="/trades.html">Trades</a></li>
+      <li><a href="/hospitality.html">Hospitality</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/index.html#audit">Free Audit</a></li>
     </ul>
     <div class="footer-copy">© 2026 Raemy AI. Houston, TX.</div>
   </div>
 </footer>
 
 <script>
-const posts = [
-  {
-    id: "1", slug: "why-independent-clinics-losing-revenue-admin",
-    title: "Why Independent Clinics Are Losing $50K+ Per Year to Admin Work",
-    date: "May 5, 2026", category: "Healthcare Operations", readTime: "5 min read",
-    excerpt: "Physicians spend 2 hours on paperwork for every hour of patient care. For an independent practice, that math is quietly devastating — and most founders don't realize how much it's costing them until they run the numbers.",
-    stat: "$50K+", statLabel: "Lost annually to admin"
-  },
-  {
-    id: "2", slug: "ai-automation-small-business-where-to-start",
-    title: "AI Automation for Small Businesses: Where to Actually Start",
-    date: "May 12, 2026", category: "AI & Automation", readTime: "6 min read",
-    excerpt: "Every small business owner has heard they need to automate. Almost none of them know where to start without wasting money on tools they won't use. Here's the framework we use with every new client.",
-    stat: "3hrs", statLabel: "Saved per staff daily"
-  },
-  {
-    id: "3", slug: "prior-authorization-nightmare-fix",
-    title: "The Prior Authorization Nightmare — And How AI Is Finally Fixing It",
-    date: "May 19, 2026", category: "Healthcare Operations", readTime: "7 min read",
-    excerpt: "Prior authorization is the single most hated administrative process in American healthcare. Here's what an AI-automated solution actually looks like in practice."
-  },
-  {
-    id: "4", slug: "five-workflows-every-service-business-should-automate",
-    title: "5 Workflows Every Service Business Should Automate Before Hiring",
-    date: "May 26, 2026", category: "AI & Automation", readTime: "6 min read",
-    excerpt: "Most founder-led service businesses hire before they automate — paying a full salary to do work that could run automatically for a fraction of the cost. Here are the five workflows to fix first."
-  },
-  {
-    id: "5", slug: "hipaa-compliance-independent-practice-guide",
-    title: "HIPAA Compliance for Independent Practices: What You Actually Need to Know",
-    date: "June 2, 2026", category: "Healthcare Operations", readTime: "8 min read",
-    excerpt: "HIPAA compliance sounds overwhelming. For most independent practices, the reality is far more manageable than the acronym suggests — if you understand what actually requires compliance and what doesn't."
-  },
-  {
-    id: "6", slug: "ai-tools-actually-worth-paying-for-2026",
-    title: "The AI Tools Actually Worth Paying For in 2026",
-    date: "June 9, 2026", category: "AI & Automation", readTime: "5 min read",
-    excerpt: "The AI tools landscape is overwhelming. After building workflow systems for health and wellness businesses, here's an honest breakdown of what's worth the investment — and what's noise."
-  },
-  {
-    id: "7", slug: "no-show-problem-costing-your-practice",
-    title: "The No-Show Problem Is Costing Your Practice More Than You Think",
-    date: "June 16, 2026", category: "Healthcare Operations", readTime: "5 min read",
-    excerpt: "The average independent practice loses 14% of potential revenue to no-shows and late cancellations. Most accept this as unavoidable. It isn't."
-  },
-  {
-    id: "8", slug: "founder-operations-trap-how-to-escape",
-    title: "The Founder Operations Trap — And How to Finally Escape It",
-    date: "June 23, 2026", category: "AI & Automation", readTime: "6 min read",
-    excerpt: "Most founders start their business to do meaningful work. Within two years, they're spending 60% of their time on admin. Here's how AI-native operations changes that equation."
-  }
-];
+// Posts are loaded from posts.json so the listing stays in sync with the source of truth.
+// For SEO-critical link discovery, links also appear inside the JSON-LD Blog schema below.
+const SITE = 'https://raemyai.com';
 
-let activeFilter = 'all';
-
-function filterPosts(category, btn) {
-  activeFilter = category;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  renderPosts();
+function fmtDate(iso) {
+  return new Date(iso + 'T00:00:00Z').toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
 }
 
-function renderPosts() {
+function render(posts) {
   const filtered = activeFilter === 'all' ? posts : posts.filter(p => p.category === activeFilter);
   const featured = filtered[0];
   const rest = filtered.slice(1);
-
   const fc = document.getElementById('featured-container');
   const pg = document.getElementById('posts-grid');
 
-  if (!featured) { fc.innerHTML = ''; pg.innerHTML = '<p style="color: var(--gray-400); padding: 24px 0;">No posts in this category yet.</p>'; return; }
+  if (!featured) {
+    fc.innerHTML = '';
+    pg.innerHTML = '<p style="color: var(--gray-400); padding: 24px 0;">No posts in this category yet.</p>';
+    return;
+  }
 
   fc.innerHTML = `
-    <div class="featured-post">
+    <article class="featured-post">
       <div>
         <div class="featured-label">Latest Post</div>
         <div class="post-meta">
           <span class="post-category">${featured.category}</span>
-          <span class="post-date">${featured.date}</span>
+          <time class="post-date" datetime="${featured.date}">${fmtDate(featured.date)}</time>
           <span class="post-read">${featured.readTime}</span>
         </div>
-        <h2><a href="post.html?slug=${featured.slug}">${featured.title}</a></h2>
+        <h2><a href="/posts/${featured.slug}.html">${featured.title}</a></h2>
         <p class="post-excerpt">${featured.excerpt}</p>
-        <a href="post.html?slug=${featured.slug}" class="read-more">Read article →</a>
+        <a href="/posts/${featured.slug}.html" class="read-more">Read article →</a>
       </div>
       <div class="featured-visual">
         <div class="featured-stat">
-          <div class="featured-stat-number">${featured.stat || '2hrs'}</div>
-          <div class="featured-stat-label">${featured.statLabel || 'Of clinical time lost to admin daily'}</div>
+          <div class="featured-stat-number">${featured.stat || '14%'}</div>
+          <div class="featured-stat-label">${featured.statLabel || 'Avg revenue lost to admin work'}</div>
         </div>
       </div>
-    </div>`;
+    </article>`;
 
-  pg.innerHTML = rest.map(post => `
-    <div class="post-card">
+  pg.innerHTML = rest.map(p => `
+    <article class="post-card">
       <div class="post-meta">
-        <span class="post-category">${post.category}</span>
-        <span class="post-read">${post.readTime}</span>
+        <span class="post-category">${p.category}</span>
+        <span class="post-read">${p.readTime}</span>
       </div>
-      <h3><a href="post.html?slug=${post.slug}">${post.title}</a></h3>
-      <p class="post-excerpt">${post.excerpt}</p>
-      <a href="post.html?slug=${post.slug}" class="read-more">Read article →</a>
-    </div>`).join('');
+      <h3><a href="/posts/${p.slug}.html">${p.title}</a></h3>
+      <p class="post-excerpt">${p.excerpt}</p>
+      <a href="/posts/${p.slug}.html" class="read-more">Read article →</a>
+    </article>`).join('');
 }
 
-renderPosts();
+let activeFilter = 'all';
+let allPosts = [];
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    activeFilter = btn.dataset.filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render(allPosts);
+  });
+});
+
+fetch('/posts.json').then(r => r.json()).then(posts => {
+  allPosts = posts;
+  render(posts);
+
+  // Inject Blog schema with ItemList of all posts
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Raemy AI Blog",
+    "description": "Insights on AI implementation, healthcare operations, hospitality, legal, and trades automation.",
+    "url": SITE + "/blog.html",
+    "publisher": { "@type": "Organization", "name": "Raemy AI", "url": SITE + "/" },
+    "blogPost": posts.map(p => ({
+      "@type": "BlogPosting",
+      "headline": p.title,
+      "description": p.excerpt,
+      "datePublished": p.date,
+      "url": SITE + "/posts/" + p.slug + ".html",
+      "author": { "@type": "Organization", "name": "Raemy AI" }
+    }))
+  };
+  document.getElementById('blog-schema').textContent = JSON.stringify(blogSchema);
+});
 </script>
+
+<noscript>
+  <style>.blog-grid-section, .filter-bar { display: none; }</style>
+  <section style="padding:60px 5%;max-width:1200px;margin:0 auto">
+    <h2 style="font-family:'DM Serif Display',serif;color:#0B1F3A;font-size:28px;margin-bottom:24px">All Articles</h2>
+    <ul style="list-style:none;padding:0">
+      <li style="margin-bottom:16px"><a href="/posts/independent-medical-practice-automation-playbook-2026.html" style="color:#0B1F3A;font-weight:500">Independent Medical Practice Automation: The Complete 2026 Playbook</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/ai-consultants-houston-how-to-choose.html" style="color:#0B1F3A;font-weight:500">AI Consultants in Houston: How to Choose One That Won't Waste Your Money</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/ai-implementation-cost-small-business-2026.html" style="color:#0B1F3A;font-weight:500">AI Implementation Cost for Small Business: What You Actually Pay in 2026</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/ai-operations-independent-hotels-restaurants-houston.html" style="color:#0B1F3A;font-weight:500">Why Independent Hotels and Restaurants Are Finally Adopting AI Operations</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/prior-authorization-tracking-independent-practice.html" style="color:#0B1F3A;font-weight:500">Prior Authorization Tracking for Independent Practices</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/how-to-reduce-no-shows-medical-practice.html" style="color:#0B1F3A;font-weight:500">How to Reduce No-Shows in Your Medical Practice</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/founder-operations-trap-how-to-escape.html" style="color:#0B1F3A;font-weight:500">The Founder Operations Trap</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/no-show-problem-costing-your-practice.html" style="color:#0B1F3A;font-weight:500">The No-Show Problem Is Costing Your Practice More Than You Think</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/ai-tools-actually-worth-paying-for-2026.html" style="color:#0B1F3A;font-weight:500">The AI Tools Actually Worth Paying For in 2026</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/hipaa-compliance-independent-practice-guide.html" style="color:#0B1F3A;font-weight:500">HIPAA Compliance for Independent Practices</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/five-workflows-every-service-business-should-automate.html" style="color:#0B1F3A;font-weight:500">5 Workflows Every Service Business Should Automate Before Hiring</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/prior-authorization-nightmare-fix.html" style="color:#0B1F3A;font-weight:500">The Prior Authorization Nightmare — And How AI Is Finally Fixing It</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/ai-automation-small-business-where-to-start.html" style="color:#0B1F3A;font-weight:500">AI Automation for Small Businesses: Where to Actually Start</a></li>
+      <li style="margin-bottom:16px"><a href="/posts/why-independent-clinics-losing-revenue-admin.html" style="color:#0B1F3A;font-weight:500">Why Independent Clinics Are Losing $50K+ Per Year to Admin Work</a></li>
+    </ul>
+  </section>
+</noscript>
+
 </body>
 </html>

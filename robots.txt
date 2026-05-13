@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block legacy dynamic post route — static versions at /posts/{slug}.html are canonical
+Disallow: /post.html
+
+Sitemap: https://raemyai.com/sitemap.xml
