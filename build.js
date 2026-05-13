@@ -172,6 +172,7 @@ ${post.keywords ? `<meta name="keywords" content="${escapeAttr(post.keywords)}">
     <li><a href="/legal.html">Legal</a></li>
     <li><a href="/trades.html">Trades</a></li>
     <li><a href="/hospitality.html">Hospitality</a></li>
+    <li><a href="/about.html">About</a></li>
     <li><a href="/blog.html">Blog</a></li>
     <li><a href="/index.html#audit" class="nav-cta">Get Free Audit</a></li>
   </ul>
@@ -221,7 +222,9 @@ ${post.keywords ? `<meta name="keywords" content="${escapeAttr(post.keywords)}">
       <li><a href="/legal.html">Legal</a></li>
       <li><a href="/trades.html">Trades</a></li>
       <li><a href="/hospitality.html">Hospitality</a></li>
+      <li><a href="/about.html">About</a></li>
       <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/glossary.html">Glossary</a></li>
       <li><a href="/index.html#audit">Free Audit</a></li>
     </ul>
     <div class="footer-copy">© 2026 Raemy AI. Houston, TX.</div>
@@ -251,6 +254,12 @@ const staticUrls = [
   { loc: `${SITE}/legal.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
   { loc: `${SITE}/trades.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
   { loc: `${SITE}/hospitality.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
+  { loc: `${SITE}/about.html`, lastmod: today, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${SITE}/services/ai-strategy.html`, lastmod: today, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${SITE}/services/ai-implementation.html`, lastmod: today, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${SITE}/services/fractional-ai-officer.html`, lastmod: today, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${SITE}/glossary.html`, lastmod: today, changefreq: 'monthly', priority: '0.7' },
+  { loc: `${SITE}/ai-readiness-assessment.html`, lastmod: today, changefreq: 'monthly', priority: '0.8' },
   { loc: `${SITE}/blog.html`, lastmod: today, changefreq: 'weekly', priority: '0.8' }
 ];
 

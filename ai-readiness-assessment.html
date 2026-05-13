@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Readiness Assessment for Small Business in Texas | Raemy AI</title>
+<meta name="description" content="A 12-question self-assessment to find out whether your independent business is ready for AI implementation. Free, takes 5 minutes, gives you a personalized score and next-step recommendation.">
+<meta name="keywords" content="AI readiness assessment, AI readiness quiz, AI scorecard small business, AI implementation readiness, are we ready for AI, AI assessment Texas">
+<meta name="author" content="Nikit Bhatt">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="https://raemyai.com/ai-readiness-assessment.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Readiness Assessment for Small Business in Texas | Raemy AI">
+<meta property="og:description" content="A 12-question self-assessment to find out whether your business is ready for AI implementation. Free, 5 minutes.">
+<meta property="og:url" content="https://raemyai.com/ai-readiness-assessment.html">
+<meta property="og:site_name" content="Raemy AI">
+<meta property="og:image" content="https://raemyai.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Readiness Assessment | Raemy AI">
+<meta name="twitter:description" content="A free 12-question self-assessment. 5 minutes. Personalized score.">
+<meta name="twitter:image" content="https://raemyai.com/og-image.png">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"AI Readiness Assessment","url":"https://raemyai.com/ai-readiness-assessment.html","description":"A 12-question self-assessment for independent businesses considering AI implementation.","mainEntity":{"@type":"Quiz","name":"AI Readiness Assessment","about":"AI implementation readiness for independent businesses","educationalLevel":"Beginner","provider":{"@type":"Organization","name":"Raemy AI","url":"https://raemyai.com/"}}}</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://raemyai.com/"},{"@type":"ListItem","position":2,"name":"AI Readiness Assessment","item":"https://raemyai.com/ai-readiness-assessment.html"}]}</script>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#0B1F3A; --green:#2D6A4F; --green-mid:#40916C; --green-light:#74C69D; --green-pale:#D8F3DC; --cream:#F8F6F1; --white:#FFFFFF; --gray-200:#E8E8E4; --gray-400:#9A9A94; --gray-600:#5C5C58; --gray-800:#2C2C2A; --serif:'DM Serif Display',Georgia,serif; --sans:'DM Sans',system-ui,sans-serif; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:var(--sans); color:var(--gray-800); background:var(--white); line-height:1.7; -webkit-font-smoothing:antialiased; }
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,0.96); backdrop-filter:blur(12px); border-bottom:1px solid var(--gray-200); padding:0 5%; height:68px; display:flex; align-items:center; justify-content:space-between; }
+  .nav-logo { font-family:var(--serif); font-size:22px; color:var(--navy); text-decoration:none; }
+  .nav-logo span { color:var(--green-mid); }
+  .nav-links { display:flex; align-items:center; gap:24px; list-style:none; }
+  .nav-links a { font-size:14px; color:var(--gray-600); text-decoration:none; }
+  .nav-links a:hover { color:var(--navy); }
+  .nav-cta { background:var(--navy)!important; color:var(--white)!important; padding:10px 22px!important; border-radius:6px!important; font-weight:500!important; }
+  .hero { padding:140px 5% 60px; background:var(--cream); border-bottom:1px solid var(--gray-200); text-align:center; }
+  .hero-inner { max-width:760px; margin:0 auto; }
+  .eyebrow { font-size:11px; font-weight:500; letter-spacing:1.5px; text-transform:uppercase; color:var(--green-mid); margin-bottom:16px; }
+  .hero h1 { font-family:var(--serif); font-size:clamp(34px,4.5vw,52px); color:var(--navy); line-height:1.1; letter-spacing:-0.7px; margin-bottom:20px; }
+  .hero h1 em { font-style:italic; color:var(--green-mid); }
+  .hero .deck { font-size:18px; color:var(--gray-600); font-weight:300; margin-bottom:28px; }
+  .meta-row { display:inline-flex; gap:24px; padding:14px 24px; background:var(--white); border:1px solid var(--gray-200); border-radius:999px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gray-600); letter-spacing:1px; text-transform:uppercase; }
+  .meta-row span strong { color:var(--green-mid); margin-right:6px; }
+  .quiz { padding:60px 5%; max-width:760px; margin:0 auto; }
+  .progress { position:sticky; top:68px; background:var(--white); padding:16px 0; border-bottom:1px solid var(--gray-200); margin-bottom:32px; z-index:50; display:flex; align-items:center; gap:16px; }
+  .progress-bar { flex:1; height:6px; background:var(--gray-200); border-radius:3px; overflow:hidden; }
+  .progress-fill { height:100%; background:var(--green-mid); width:0%; transition:width 0.3s; }
+  .progress-text { font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gray-600); white-space:nowrap; }
+  .question-block { padding:28px; border:1px solid var(--gray-200); border-radius:12px; margin-bottom:18px; transition:border-color 0.15s; }
+  .question-block.answered { border-color:var(--green-pale); background:rgba(216,243,220,0.15); }
+  .q-num { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--green-mid); letter-spacing:1.5px; text-transform:uppercase; margin-bottom:8px; }
+  .q-text { font-family:var(--serif); font-size:20px; color:var(--navy); line-height:1.3; margin-bottom:18px; }
+  .q-options { display:grid; gap:8px; }
+  .q-options label { display:flex; align-items:center; gap:12px; padding:12px 16px; border:1px solid var(--gray-200); border-radius:8px; cursor:pointer; font-size:15px; color:var(--gray-800); transition:all 0.15s; }
+  .q-options label:hover { border-color:var(--green-mid); background:var(--cream); }
+  .q-options input { accent-color:var(--green-mid); flex-shrink:0; }
+  .q-options input:checked + span { color:var(--green); font-weight:500; }
+  .q-options label:has(input:checked) { border-color:var(--green-mid); background:var(--green-pale); }
+  .q-section-divider { font-family:var(--serif); font-size:14px; color:var(--gray-400); text-transform:uppercase; letter-spacing:2px; margin:36px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--gray-200); }
+  .submit-row { padding:32px; background:var(--cream); border-radius:12px; margin-top:24px; text-align:center; }
+  .submit-row .submit-btn { display:inline-block; background:var(--navy); color:var(--white); padding:16px 36px; border-radius:8px; border:none; font-size:15px; font-weight:500; cursor:pointer; font-family:var(--sans); }
+  .submit-row .submit-btn:hover { background:var(--green-mid); }
+  .submit-row .submit-btn:disabled { opacity:0.4; cursor:not-allowed; }
+  .submit-row .help { font-size:13px; color:var(--gray-600); margin-top:12px; }
+  .result { display:none; padding:48px; background:var(--navy); color:var(--white); border-radius:16px; margin-top:32px; }
+  .result.show { display:block; }
+  .result-score { font-family:var(--serif); font-size:64px; line-height:1; margin-bottom:8px; color:var(--green-light); font-style:italic; }
+  .result-band { font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--green-light); margin-bottom:16px; }
+  .result h2 { font-family:var(--serif); font-size:32px; line-height:1.2; margin-bottom:16px; }
+  .result p { font-size:16px; color:rgba(255,255,255,0.75); font-weight:300; margin-bottom:18px; }
+  .result-cta { display:inline-block; background:var(--green-mid); color:var(--white); padding:14px 28px; border-radius:8px; text-decoration:none; font-weight:500; margin-top:12px; }
+  .result-cta:hover { background:var(--green); }
+  .result-cta.secondary { background:transparent; border:1px solid rgba(255,255,255,0.3); margin-left:8px; }
+  .result-cta.secondary:hover { background:rgba(255,255,255,0.06); }
+  .below-fold { padding:60px 5%; max-width:760px; margin:0 auto; }
+  .below-fold h2 { font-family:var(--serif); font-size:28px; color:var(--navy); margin-bottom:18px; }
+  .below-fold p { font-size:16px; color:var(--gray-600); font-weight:300; margin-bottom:18px; }
+  .below-fold ul { padding-left:20px; margin-bottom:18px; }
+  .below-fold li { font-size:16px; color:var(--gray-600); font-weight:300; margin-bottom:8px; }
+  .below-fold a { color:var(--green-mid); text-decoration:underline; text-underline-offset:3px; }
+  footer { background:var(--gray-800); padding:48px 5%; }
+  .footer-inner { max-width:1200px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; align-items:center; }
+  .footer-logo { font-family:var(--serif); font-size:20px; color:var(--white); text-decoration:none; }
+  .footer-logo span { color:var(--green-light); }
+  .footer-links { display:flex; gap:24px; list-style:none; flex-wrap:wrap; }
+  .footer-links a { font-size:13px; color:rgba(255,255,255,0.4); text-decoration:none; }
+  .footer-copy { font-size:12px; color:rgba(255,255,255,0.25); width:100%; text-align:center; margin-top:24px; padding-top:24px; border-top:1px solid rgba(255,255,255,0.06); }
+  @media (max-width:900px) { .nav-links { display:none; } .meta-row { flex-direction:column; gap:8px; padding:14px 24px; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/index.html" class="nav-logo">raemy<span>ai</span></a>
+  <ul class="nav-links">
+    <li><a href="/health.html">Health</a></li>
+    <li><a href="/legal.html">Legal</a></li>
+    <li><a href="/trades.html">Trades</a></li>
+    <li><a href="/hospitality.html">Hospitality</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="/blog.html">Blog</a></li>
+    <li><a href="/index.html#audit" class="nav-cta">Get Free Audit</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Free Self-Assessment · 5 Minutes</div>
+    <h1>AI Readiness <em>Assessment.</em></h1>
+    <p class="deck">12 questions. 5 minutes. A personalized score and a clear next-step recommendation for your independent business in Texas. No email required to see your results.</p>
+    <div class="meta-row">
+      <span><strong>12</strong>Questions</span>
+      <span><strong>5</strong>Minutes</span>
+      <span><strong>0</strong>Email required</span>
+    </div>
+  </div>
+</header>
+
+<main class="quiz">
+
+<div class="progress">
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <span class="progress-text" id="progress-text">0 / 12 answered</span>
+</div>
+
+<form id="assessment-form">
+
+<div class="q-section-divider">Section 1 · Operational Pain</div>
+
+<div class="question-block" data-q="1">
+  <div class="q-num">Question 01</div>
+  <div class="q-text">How many hours per week does your team spend on repetitive administrative tasks?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q1" value="0"><span>Under 5 hours</span></label>
+    <label><input type="radio" name="q1" value="1"><span>5–15 hours</span></label>
+    <label><input type="radio" name="q1" value="2"><span>15–30 hours</span></label>
+    <label><input type="radio" name="q1" value="3"><span>30+ hours</span></label>
+  </div>
+</div>
+
+<div class="question-block" data-q="2">
+  <div class="q-num">Question 02</div>
+  <div class="q-text">Are you losing leads, patients, or customers to slow response time?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q2" value="0"><span>No — our response time is excellent</span></label>
+    <label><input type="radio" name="q2" value="1"><span>Occasionally — during busy periods</span></label>
+    <label><input type="radio" name="q2" value="2"><span>Regularly — we know it's a problem</span></label>
+    <label><input type="radio" name="q2" value="3"><span>Constantly — it's a major leak</span></label>
+  </div>
+</div>
+
+<div class="question-block" data-q="3">
+  <div class="q-num">Question 03</div>
+  <div class="q-text">Do critical workflows fall through the cracks (missed deadlines, lost follow-ups, dropped requests)?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q3" value="0"><span>Almost never</span></label>
+    <label><input type="radio" name="q3" value="1"><span>Rarely — we usually catch them</span></label>
+    <label><input type="radio" name="q3" value="2"><span>Sometimes — and it costs us</span></label>
+    <label><input type="radio" name="q3" value="3"><span>Often — we need a real system</span></label>
+  </div>
+</div>
+
+<div class="question-block" data-q="4">
+  <div class="q-num">Question 04</div>
+  <div class="q-text">How much time does the owner/founder spend on operational work that doesn't require their judgment?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q4" value="0"><span>None — fully delegated</span></label>
+    <label><input type="radio" name="q4" value="1"><span>A few hours per week</span></label>
+    <label><input type="radio" name="q4" value="2"><span>10–20 hours per week</span></label>
+    <label><input type="radio" name="q4" value="3"><span>20+ hours per week — it's most of my week</span></label>
+  </div>
+</div>
+
+<div class="q-section-divider">Section 2 · Implementation Readiness</div>
+
+<div class="question-block" data-q="5">
+  <div class="q-num">Question 05</div>
+  <div class="q-text">Do you have a clear sense of which workflow you'd automate first?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q5" value="0"><span>No idea — we need help thinking about it</span></label>
+    <label><input type="radio" name="q5" value="1"><span>Vague sense — multiple candidates</span></label>
+    <label><input type="radio" name="q5" value="2"><span>Pretty clear — one obvious target</span></label>
+    <label><input type="radio" name="q5" value="3"><span>Crystal clear — we know exactly</span></label>
+  </div>
+</div>
+
+<div class="question-block" data-q="6">
+  <div class="q-num">Question 06</div>
+  <div class="q-text">Is your current technology stack stable (not in the middle of an EHR/case management/PMS migration)?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q6" value="0"><span>Mid-migration right now</span></label>
+    <label><input type="radio" name="q6" value="1"><span>Migration planned in next 6 months</span></label>
+    <label><input type="radio" name="q6" value="2"><span>Stable — but considering changes</span></label>
+    <label><input type="radio" name="q6" value="3"><span>Stable and committed to current systems</span></label>
+  </div>
+</div>
+
+<div class="question-block" data-q="7">
+  <div class="q-num">Question 07</div>
+  <div class="q-text">Do you have ongoing budget for an operational investment in the $20K-$80K/year range?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q7" value="0"><span>No — not in this fiscal year</span></label>
+    <label><input type="radio" name="q7" value="1"><span>Maybe — would need to shift priorities</span></label>
+    <label><input type="radio" name="q7" value="2"><span>Yes — if the ROI math works</span></label>
+    <label><input type="radio" name="q7" value="3"><span>Yes — already budgeted</span></label>
+  </div>
+</div>
+
+<div class="question-block" data-q="8">
+  <div class="q-num">Question 08</div>
+  <div class="q-text">Is your team open to new tools and workflow changes?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q8" value="0"><span>Highly resistant — recent failed rollout</span></label>
+    <label><input type="radio" name="q8" value="1"><span>Skeptical but workable</span></label>
+    <label><input type="radio" name="q8" value="2"><span>Generally open</span></label>
+    <label><input type="radio" name="q8" value="3"><span>Eager — they're asking for it</span></label>
+  </div>
+</div>
+
+<div class="q-section-divider">Section 3 · Business Profile Fit</div>
+
+<div class="question-block" data-q="9">
+  <div class="q-num">Question 09</div>
+  <div class="q-text">Which industry are you in?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q9" value="3"><span>Healthcare (medical practice, med spa, clinic, etc.)</span></label>
+    <label><input type="radio" name="q9" value="3"><span>Legal (law firm, solo attorney)</span></label>
+    <label><input type="radio" name="q9" value="3"><span>Trades (HVAC, plumbing, electrical, contractor)</span></label>
+    <label><input type="radio" name="q9" value="3"><span>Hospitality (boutique hotel, restaurant, STR)</span></label>
+    <label><input type="radio" name="q9" value="1"><span>Other service business</span></label>
+    <label><input type="radio" name="q9" value="0"><span>Product/manufacturing</span></label>
+  </div>
+</div>
+
+<div class="question-block" data-q="10">
+  <div class="q-num">Question 10</div>
+  <div class="q-text">Where is your business based?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q10" value="3"><span>Houston metro</span></label>
+    <label><input type="radio" name="q10" value="3"><span>Other Texas city (Austin, Dallas, San Antonio, etc.)</span></label>
+    <label><input type="radio" name="q10" value="2"><span>Outside Texas — open to remote engagement</span></label>
+    <label><input type="radio" name="q10" value="0"><span>Outside US</span></label>
+  </div>
+</div>
+
+<div class="question-block" data-q="11">
+  <div class="q-num">Question 11</div>
+  <div class="q-text">How many employees do you have?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q11" value="1"><span>Solo / just me</span></label>
+    <label><input type="radio" name="q11" value="3"><span>2–10 employees</span></label>
+    <label><input type="radio" name="q11" value="3"><span>11–50 employees</span></label>
+    <label><input type="radio" name="q11" value="2"><span>51–200 employees</span></label>
+    <label><input type="radio" name="q11" value="1"><span>200+ employees</span></label>
+  </div>
+</div>
+
+<div class="question-block" data-q="12">
+  <div class="q-num">Question 12</div>
+  <div class="q-text">What is your annual revenue?</div>
+  <div class="q-options">
+    <label><input type="radio" name="q12" value="0"><span>Under $500K</span></label>
+    <label><input type="radio" name="q12" value="2"><span>$500K – $2M</span></label>
+    <label><input type="radio" name="q12" value="3"><span>$2M – $10M</span></label>
+    <label><input type="radio" name="q12" value="3"><span>$10M – $25M</span></label>
+    <label><input type="radio" name="q12" value="2"><span>Over $25M</span></label>
+  </div>
+</div>
+
+<div class="submit-row">
+  <button type="submit" class="submit-btn" id="submit-btn" disabled>Get my AI readiness score</button>
+  <div class="help">No email required to see your score. We'll show your result inline.</div>
+</div>
+
+</form>
+
+<div class="result" id="result-block">
+  <div class="result-score" id="result-score">0</div>
+  <div class="result-band" id="result-band">— / 36</div>
+  <h2 id="result-title">Your AI readiness score</h2>
+  <p id="result-message"></p>
+  <a href="/index.html#audit" class="result-cta" id="result-cta-primary">Get Your Free Audit</a>
+  <a href="#" class="result-cta secondary" id="result-cta-secondary">Read your industry guide</a>
+</div>
+
+</main>
+
+<section class="below-fold">
+  <h2>How the score is calculated</h2>
+  <p>Each question is scored 0 to 3, for a maximum of 36 points. Higher scores indicate stronger fit for an immediate AI implementation engagement. Lower scores indicate operational basics that should be addressed first, or businesses that fall outside Raemy AI's typical engagement profile.</p>
+  <ul>
+    <li><strong>27–36 points (High readiness):</strong> Strong candidate for full implementation. Most businesses in this band see ROI within 60 days of launch. Recommended next step: a free 30-minute audit to map your highest-ROI workflows.</li>
+    <li><strong>17–26 points (Medium readiness):</strong> Good candidate for a single-workflow pilot or a strategy engagement first. The audit will identify the right entry point.</li>
+    <li><strong>8–16 points (Low readiness):</strong> Operational basics or stack stability should be addressed first. The audit can still produce a useful roadmap, but implementation may not be the right immediate next step.</li>
+    <li><strong>0–7 points (Not yet):</strong> AI implementation is unlikely to produce ROI given your current profile. Read our blog content or revisit the assessment when circumstances change.</li>
+  </ul>
+  <h2 style="margin-top:32px">What happens at the free 30-minute audit</h2>
+  <p>The audit is a structured conversation, not a sales pitch. We will:</p>
+  <ul>
+    <li>Walk through your current operational workflows in your specific industry.</li>
+    <li>Identify the 2-3 highest-ROI automation targets for your business.</li>
+    <li>Quantify the time and revenue impact in dollars per month.</li>
+    <li>Share whether AI implementation is genuinely the right answer for you — including when it isn't.</li>
+    <li>Send a written summary within 48 hours, regardless of whether you decide to engage.</li>
+  </ul>
+  <p>No obligation. No follow-up cadence we control. <a href="/index.html#audit">Book the audit here</a>.</p>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <a href="/index.html" class="footer-logo">raemy<span>ai</span></a>
+    <ul class="footer-links">
+      <li><a href="/health.html">Health</a></li>
+      <li><a href="/legal.html">Legal</a></li>
+      <li><a href="/trades.html">Trades</a></li>
+      <li><a href="/hospitality.html">Hospitality</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/glossary.html">Glossary</a></li>
+      <li><a href="/index.html#audit">Free Audit</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 Raemy AI. Houston, TX.</div>
+  </div>
+</footer>
+
+<script>
+  const form = document.getElementById('assessment-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const fill = document.getElementById('progress-fill');
+  const progressText = document.getElementById('progress-text');
+  const resultBlock = document.getElementById('result-block');
+  const TOTAL = 12;
+
+  function updateProgress() {
+    const answered = new Set();
+    form.querySelectorAll('input[type=radio]:checked').forEach(i => answered.add(i.name));
+    const count = answered.size;
+    fill.style.width = (count / TOTAL * 100) + '%';
+    progressText.textContent = count + ' / ' + TOTAL + ' answered';
+    submitBtn.disabled = count < TOTAL;
+    answered.forEach(name => {
+      const q = form.querySelector('[data-q="' + name.slice(1) + '"]');
+      if (q) q.classList.add('answered');
+    });
+  }
+
+  form.addEventListener('change', updateProgress);
+
+  function industryLink(q9Score, q9Index) {
+    // q9Index is the index of the chosen option in question 9 to determine specific industry link
+    const labels = ['Healthcare', 'Legal', 'Trades', 'Hospitality', 'Other service', 'Product/manufacturing'];
+    const links = ['/health.html', '/legal.html', '/trades.html', '/hospitality.html', '/blog.html', '/blog.html'];
+    return { label: labels[q9Index] || 'Industry', link: links[q9Index] || '/blog.html' };
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let score = 0;
+    let q9Index = -1;
+    for (let i = 1; i <= TOTAL; i++) {
+      const checked = form.querySelector('input[name=q' + i + ']:checked');
+      if (checked) {
+        score += parseInt(checked.value, 10);
+        if (i === 9) {
+          const radios = form.querySelectorAll('input[name=q9]');
+          radios.forEach((r, idx) => { if (r === checked) q9Index = idx; });
+        }
+      }
+    }
+
+    let band, title, message;
+    if (score >= 27) {
+      band = 'High readiness';
+      title = 'You are ready for full AI implementation.';
+      message = "Your business profile is a strong fit for an immediate implementation engagement. Most businesses in this score band recover the cost of the engagement within 60 days. The next step is a free 30-minute audit — we'll map your highest-ROI workflows specifically and quantify the dollar impact.";
+    } else if (score >= 17) {
+      band = 'Medium readiness';
+      title = 'You are ready for a pilot or strategy engagement.';
+      message = "Your business profile fits a single-workflow pilot or a 4-6 week strategy engagement before full implementation. The audit will identify the right entry point — sometimes the answer is one workflow, sometimes the answer is a roadmap first.";
+    } else if (score >= 8) {
+      band = 'Low readiness';
+      title = 'Operational basics or stack stability come first.';
+      message = "Your profile suggests that some operational or technology foundation work should happen before AI implementation. The audit can still produce a useful roadmap and tell you what to fix first. Implementation may be the right step in 6-12 months once those basics are in place.";
+    } else {
+      band = 'Not yet';
+      title = 'AI implementation is unlikely to produce ROI right now.';
+      message = "Based on your current profile, AI implementation is unlikely to be the right next step. This may be because of business size, industry fit, or budget timing. Read our blog content for general operational best practices, or revisit this assessment when circumstances change.";
+    }
+
+    document.getElementById('result-score').textContent = score;
+    document.getElementById('result-band').textContent = band + '  ·  ' + score + ' / 36';
+    document.getElementById('result-title').textContent = title;
+    document.getElementById('result-message').textContent = message;
+
+    const ind = industryLink(0, q9Index);
+    const secondary = document.getElementById('result-cta-secondary');
+    secondary.href = ind.link;
+    secondary.textContent = 'Read the ' + ind.label + ' guide';
+
+    resultBlock.classList.add('show');
+    resultBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>
+
+</body>
+</html>
