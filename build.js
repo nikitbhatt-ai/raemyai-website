@@ -260,6 +260,10 @@ const staticUrls = [
   { loc: `${SITE}/services/fractional-ai-officer.html`, lastmod: today, changefreq: 'monthly', priority: '0.8' },
   { loc: `${SITE}/glossary.html`, lastmod: today, changefreq: 'monthly', priority: '0.7' },
   { loc: `${SITE}/ai-readiness-assessment.html`, lastmod: today, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${SITE}/locations/houston.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
+  { loc: `${SITE}/locations/austin.html`, lastmod: today, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${SITE}/locations/dallas.html`, lastmod: today, changefreq: 'monthly', priority: '0.8' },
+  { loc: `${SITE}/locations/san-antonio.html`, lastmod: today, changefreq: 'monthly', priority: '0.8' },
   { loc: `${SITE}/blog.html`, lastmod: today, changefreq: 'weekly', priority: '0.8' }
 ];
 
