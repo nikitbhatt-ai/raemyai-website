@@ -168,10 +168,7 @@ ${post.keywords ? `<meta name="keywords" content="${escapeAttr(post.keywords)}">
   <a href="/index.html" class="nav-logo">raemy<span>ai</span></a>
   <ul class="nav-links">
     <li><a href="/index.html#solutions">Solutions</a></li>
-    <li><a href="/health.html">Health</a></li>
-    <li><a href="/legal.html">Legal</a></li>
-    <li><a href="/trades.html">Trades</a></li>
-    <li><a href="/hospitality.html">Hospitality</a></li>
+    <li><a href="/who-we-serve.html">Who We Serve</a></li>
     <li><a href="/about.html">About</a></li>
     <li><a href="/blog.html">Blog</a></li>
     <li><a href="/index.html#audit" class="nav-cta">Get Free Audit</a></li>
@@ -218,10 +215,7 @@ ${post.keywords ? `<meta name="keywords" content="${escapeAttr(post.keywords)}">
     <a href="/index.html" class="footer-logo">raemy<span>ai</span></a>
     <ul class="footer-links">
       <li><a href="/index.html#solutions">Solutions</a></li>
-      <li><a href="/health.html">Health</a></li>
-      <li><a href="/legal.html">Legal</a></li>
-      <li><a href="/trades.html">Trades</a></li>
-      <li><a href="/hospitality.html">Hospitality</a></li>
+      <li><a href="/who-we-serve.html">Who We Serve</a></li>
       <li><a href="/about.html">About</a></li>
       <li><a href="/blog.html">Blog</a></li>
       <li><a href="/glossary.html">Glossary</a></li>
@@ -250,6 +244,9 @@ const today = new Date().toISOString().slice(0, 10);
 const staticUrls = [
   { loc: `${SITE}/`, lastmod: today, changefreq: 'weekly', priority: '1.0' },
   { loc: `${SITE}/index.html`, lastmod: today, changefreq: 'weekly', priority: '1.0' },
+  { loc: `${SITE}/who-we-serve.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
+  { loc: `${SITE}/health-admin.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
+  { loc: `${SITE}/service-based.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
   { loc: `${SITE}/health.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
   { loc: `${SITE}/legal.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
   { loc: `${SITE}/trades.html`, lastmod: today, changefreq: 'monthly', priority: '0.9' },
