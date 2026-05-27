@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { getSupabaseAdmin } from "@/lib/supabase";
 import { runAgent } from "@/lib/anthropic";
 import { hunterAgent, parseHunterOutput } from "@/lib/agents/hunter";
 
@@ -14,7 +14,7 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { data: clients, error } = await supabaseAdmin
+  const { data: clients, error } = await getSupabaseAdmin()
     .from("clients")
     .select("id, name, monthly_quota, tasks_this_month")
     .eq("active", true);
@@ -33,7 +33,7 @@ export async function GET(request: Request) {
     }
     const limit = Math.min(remaining, BATCH_CAP);
 
-    const { data: leads } = await supabaseAdmin
+    const { data: leads } = await getSupabaseAdmin()
       .from("leads")
       .select("id, raw_input")
       .eq("client_id", client.id)
@@ -50,7 +50,7 @@ export async function GET(request: Request) {
           leadId: lead.id,
         });
         const parsed = parseHunterOutput(result.text);
-        await supabaseAdmin
+        await getSupabaseAdmin()
           .from("leads")
           .update({
             status: parsed ? (parsed.fit ? "qualified" : "not_fit") : "error",
@@ -63,7 +63,7 @@ export async function GET(request: Request) {
           .eq("id", lead.id);
         processed++;
       } catch (err) {
-        await supabaseAdmin
+        await getSupabaseAdmin()
           .from("leads")
           .update({ status: "error", reason: String(err) })
           .eq("id", lead.id);
@@ -71,7 +71,7 @@ export async function GET(request: Request) {
     }
 
     if (processed > 0) {
-      await supabaseAdmin
+      await getSupabaseAdmin()
         .from("clients")
         .update({ tasks_this_month: client.tasks_this_month + processed })
         .eq("id", client.id);

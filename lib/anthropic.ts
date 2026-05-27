@@ -1,7 +1,11 @@
 import Anthropic from "@anthropic-ai/sdk";
-import { supabaseAdmin } from "./supabase";
+import { getSupabaseAdmin } from "./supabase";
 
-const claude = new Anthropic();
+let _claude: Anthropic | undefined;
+function getClaude() {
+  if (!_claude) _claude = new Anthropic();
+  return _claude;
+}
 
 const PRICES = {
   "claude-haiku-4-5-20251001": { in: 1, out: 5 },
@@ -35,7 +39,7 @@ export async function runAgent(opts: {
 }): Promise<AgentResult> {
   const { agent, input, clientId, leadId } = opts;
 
-  const response = await claude.messages.create({
+  const response = await getClaude().messages.create({
     model: agent.model,
     max_tokens: agent.maxOutputTokens,
     system: agent.system,
@@ -52,7 +56,7 @@ export async function runAgent(opts: {
   const costUsd =
     (input_tokens / 1e6) * price.in + (output_tokens / 1e6) * price.out;
 
-  await supabaseAdmin.from("usage_log").insert({
+  await getSupabaseAdmin().from("usage_log").insert({
     client_id: clientId,
     agent_id: agent.id,
     lead_id: leadId ?? null,
