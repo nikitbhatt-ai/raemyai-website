@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/api/cron/run-hunter",
+      "path": "/api/cron/hunter",
       "schedule": "0 13 * * *"
     }
   ]
