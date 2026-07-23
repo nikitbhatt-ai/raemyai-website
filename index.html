@@ -377,6 +377,15 @@
   .team-coming-label{font-family:var(--mono);font-size:11px;color:var(--ink-mute);text-transform:uppercase;letter-spacing:1.5px}
   .team-coming-title{font-family:var(--serif);font-size:22px;color:var(--ink);font-weight:500;letter-spacing:-0.01em}
   .team-coming-desc{font-size:14px;color:var(--ink-soft);line-height:1.6}
+  .team-solid{background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:40px 28px;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:12px;transition:all 0.2s}
+  .team-solid:hover{box-shadow:0 16px 40px -16px rgba(10,27,51,0.15);transform:translateY(-2px)}
+  .team-solid.accent{border-color:var(--green);background:rgba(216,243,220,0.4)}
+  .team-badge{display:inline-flex;background:var(--acid);color:var(--ink);padding:4px 12px;border-radius:999px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:4px}
+  .team-solid-label{font-family:var(--mono);font-size:11px;color:var(--green);text-transform:uppercase;letter-spacing:1.5px}
+  .team-solid-title{font-family:var(--serif);font-size:22px;color:var(--ink);font-weight:500;letter-spacing:-0.01em}
+  .team-solid-desc{font-size:14px;color:var(--ink-soft);line-height:1.65}
+  .team-solid-link{margin-top:4px;font-family:var(--mono);font-size:11px;font-weight:500;color:var(--ink);text-transform:uppercase;letter-spacing:1px;text-decoration:none;border-bottom:1px solid var(--green);padding-bottom:2px}
+  .team-solid-link:hover{color:var(--green)}
 
   /* PRICING */
   .pricing-section{padding:120px clamp(20px,5vw,56px);background:var(--paper);border-top:1px solid var(--line)}
@@ -952,32 +961,25 @@
 <section class="team-section" id="team">
   <div class="section-inner">
     <div class="eyebrow">Our team</div>
-    <h2 class="section-title">You get the right expert.<br><em>Not the available one.</em></h2>
-    <p class="section-sub">Raemy AI is built on a network of industry specialists. Every client is matched with someone who has operated in their specific world, not a generalist who will figure it out on the way.</p>
+    <h2 class="section-title">Operators build it.<br><em>Specialists sharpen it.</em></h2>
+    <p class="section-sub">Every Raemy AI engagement is designed, built, and run by operators who have actually run businesses like yours. When you want an even sharper edge, add a dedicated industry specialist — someone who has worked inside your exact field — to your implementation.</p>
     <div class="team-grid">
-      <div class="team-card">
-        <div class="team-card-img">
-          <img src="founder.jpg" alt="Nikit Bhatt, Founder of Raemy AI">
-        </div>
-        <div class="team-card-body">
-          <div class="team-card-name">Nikit Bhatt</div>
-          <div class="team-card-role">Founder and CEO</div>
-          <p class="team-card-bio">15 years running operations across healthcare, hospitality, technology, and public safety. From scaling operations from launch to multi-million dollar revenue to building AI-native companies from scratch, Nikit brings operator-level execution to every engagement. He has lived inside the businesses Raemy AI serves and built the systems that run them.</p>
-          <a href="https://www.linkedin.com/in/nikit-bhatt" target="_blank" rel="noopener noreferrer" class="team-card-link">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            Connect on LinkedIn
-          </a>
-        </div>
+      <div class="team-solid">
+        <div class="team-solid-label">The core team</div>
+        <div class="team-solid-title">Operators, not a help desk</div>
+        <p class="team-solid-desc">Your AI system is designed, built, and managed by people who have run real operations across healthcare, hospitality, legal, trades, and technology — and know exactly where AI moves the needle. Every engagement is led with operator-level execution from day one.</p>
       </div>
-      <div class="team-coming">
-        <div class="team-coming-label">Health and Wellness Lead</div>
-        <div class="team-coming-title">Specialist joining soon</div>
-        <p class="team-coming-desc">Our Raemy Health specialist brings deep expertise in healthcare administration and independent practice operations. Every Raemy Health client works directly with someone who has operated inside a clinical environment.</p>
+      <div class="team-solid accent">
+        <span class="team-badge">Add-on</span>
+        <div class="team-solid-label">Industry specialist</div>
+        <div class="team-solid-title">Matched to your field</div>
+        <p class="team-solid-desc">Add a dedicated specialist who has operated inside your industry — health, legal, trades, or hospitality — to guide your build from day one. Available as an optional add-on to any engagement.</p>
+        <a href="#pricing" class="team-solid-link">See pricing →</a>
       </div>
       <div class="team-coming">
         <div class="team-coming-label">Join our specialist network</div>
         <div class="team-coming-title">Experienced operator?</div>
-        <p class="team-coming-desc">We are building a network of industry specialists across legal, trades, hospitality, and beyond. If you have deep operational experience in your field and want to explore joining the Raemy AI team, reach out at <a href="mailto:nikit@raemyai.com" style="color:var(--green);font-weight:500">nikit@raemyai.com</a></p>
+        <p class="team-coming-desc">We are building a network of industry specialists across health, legal, trades, hospitality, and beyond. If you have deep operational experience in your field and want to explore joining the Raemy AI team, reach out at <a href="mailto:nikit@raemyai.com" style="color:var(--green);font-weight:500">nikit@raemyai.com</a></p>
       </div>
     </div>
   </div>
@@ -1054,35 +1056,6 @@
     </div>
 
     <p style="margin-top:20px;font-size:13px;color:var(--ink-mute);text-align:center;font-family:var(--mono);text-transform:uppercase;letter-spacing:1px">Minimum commitment 3 months · 6-month commitment receives one month complimentary</p>
-  </div>
-</section>
-
-<!-- FOUNDER -->
-<section class="founder">
-  <div class="founder-grid">
-    <div>
-      <div class="founder-img-wrap">
-        <img src="founder.jpg" alt="Nikit Bhatt, Founder of Raemy AI">
-        <div class="founder-tag">Founder · Houston, TX</div>
-      </div>
-    </div>
-    <div>
-      <div class="eyebrow">From the founder</div>
-      <div class="founder-quote">Built by operators.<br><em>For operators.</em></div>
-      <p class="founder-body">"We spent years watching brilliant people lose their best hours to admin work that should have been automated long ago. We built Raemy AI because small businesses deserve better. Not eventually. Now."</p>
-      <p class="founder-body">Between us, we have managed multi-million dollar operations, scaled businesses from startup to enterprise, and led teams across industries and continents. In every one of those roles, the same problem kept showing up. Brilliant people spending their best hours on work that had nothing to do with why they built their business.</p>
-      <p class="founder-body">The large companies we worked alongside had entire teams dedicated to solving this. Small businesses had one person wearing every hat. Raemy AI exists to close that gap.</p>
-      <div class="founder-meta">
-        <div>
-          <div class="founder-name">Nikit Bhatt</div>
-          <div class="founder-role">Founder, Raemy AI · Houston, TX</div>
-        </div>
-        <a href="https://www.linkedin.com/in/nikit-bhatt" target="_blank" rel="noopener noreferrer" class="linkedin-pill">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          Connect on LinkedIn
-        </a>
-      </div>
-    </div>
   </div>
 </section>
 
