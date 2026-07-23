@@ -4,6 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog Post — Raemy AI</title>
+<meta name="description" id="meta-description" content="Insights on AI automation and operations for founder-led small businesses in healthcare, legal, trades, and hospitality — from Raemy AI.">
+<meta name="keywords" id="meta-keywords" content="AI automation, small business operations, workflow automation, Raemy AI, Houston AI automation">
+<meta name="author" content="Raemy AI">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" id="canonical-link" href="https://raemyai.com/blog.html">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B1F3A'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' font-style='italic' text-anchor='middle' fill='%2374C69D'%3Er%3C/text%3E%3C/svg%3E">
+
+<meta property="og:title" id="og-title" content="Blog Post — Raemy AI">
+<meta property="og:description" id="og-description" content="Insights on AI automation and operations for founder-led small businesses — from Raemy AI.">
+<meta property="og:url" id="og-url" content="https://raemyai.com/blog.html">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Raemy AI">
+<meta property="og:image" content="https://raemyai.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" id="tw-title" content="Blog Post — Raemy AI">
+<meta name="twitter:description" id="tw-description" content="Insights on AI automation and operations for founder-led small businesses.">
+<meta name="twitter:image" content="https://raemyai.com/og-image.png">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -148,6 +167,49 @@ const post = posts.find(p => p.slug === slug);
 
 if (post) {
   document.title = post.title + ' — Raemy AI';
+
+  // --- SEO: update meta tags dynamically for this post ---
+  const postUrl = 'https://raemyai.com/post.html?slug=' + post.slug;
+  const desc = post.excerpt;
+  const setContent = (id, value) => { const el = document.getElementById(id); if (el) el.setAttribute('content', value); };
+  setContent('meta-description', desc);
+  setContent('meta-keywords', post.category + ', ' + post.title + ', AI automation, small business operations, Raemy AI, Houston AI automation');
+  setContent('og-title', post.title + ' — Raemy AI');
+  setContent('og-description', desc);
+  setContent('og-url', postUrl);
+  setContent('tw-title', post.title + ' — Raemy AI');
+  setContent('tw-description', desc);
+  const canonical = document.getElementById('canonical-link');
+  if (canonical) canonical.setAttribute('href', postUrl);
+
+  // --- SEO: inject BlogPosting structured data ---
+  const months = { January:'01', February:'02', March:'03', April:'04', May:'05', June:'06', July:'07', August:'08', September:'09', October:'10', November:'11', December:'12' };
+  const dm = post.date.match(/([A-Za-z]+)\s+(\d{1,2}),\s+(\d{4})/);
+  const isoDate = dm ? `${dm[3]}-${months[dm[1]] || '01'}-${String(dm[2]).padStart(2, '0')}` : '';
+  const articleLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt,
+    "articleSection": post.category,
+    "url": postUrl,
+    "mainEntityOfPage": { "@type": "WebPage", "@id": postUrl },
+    "inLanguage": "en-US",
+    "image": "https://raemyai.com/og-image.png",
+    "author": { "@type": "Organization", "name": "Raemy AI", "url": "https://raemyai.com/" },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Raemy AI",
+      "url": "https://raemyai.com/",
+      "logo": { "@type": "ImageObject", "url": "https://raemyai.com/og-image.png" }
+    }
+  };
+  if (isoDate) { articleLd.datePublished = isoDate; articleLd.dateModified = isoDate; }
+  const ldScript = document.createElement('script');
+  ldScript.type = 'application/ld+json';
+  ldScript.textContent = JSON.stringify(articleLd);
+  document.head.appendChild(ldScript);
+
   document.getElementById('post-meta').innerHTML = `
     <span class="post-category">${post.category}</span>
     <span class="post-date">${post.date}</span>

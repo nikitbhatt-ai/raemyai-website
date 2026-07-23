@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Allow major AI/search crawlers explicitly
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+Sitemap: https://raemyai.com/sitemap.xml
