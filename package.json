@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "eval": "tsx scripts/eval-hunter.ts"
+    "eval": "tsx scripts/eval-hunter.ts",
+    "import-leads": "tsx scripts/import-leads.ts"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.99.0",
     "@supabase/supabase-js": "^2.106.2",
+    "csv-parse": "^7.0.1",
     "next": "^16.2.6",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
