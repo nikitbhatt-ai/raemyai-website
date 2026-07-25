@@ -1,20 +1,31 @@
 /**
  * Bulk import prospects into the leads table for a client.
  *
- * CSV format (header row required):
- *   raw_input,source
- *   "Sunrise Yoga Studio, Austin TX...",apollo
- *   "Kinetic PT, Denver metro...",linkedin
+ * Two supported CSV shapes:
  *
- * The "source" column is optional. Any other columns are ignored.
+ * 1) Simple shape — a "raw_input" column (and optionally "source"):
+ *      raw_input,source
+ *      "Sunrise Yoga Studio, Austin TX...",apollo
+ *
+ * 2) Rich shape — many columns; the script concatenates the ones you
+ *    pick into a single raw_input string like
+ *    "Business: X | Area: Y | Signal / notes: Z". Use --fields to
+ *    pick which columns to include (comma-separated, exact header
+ *    names). If --fields is omitted, ALL non-empty columns are used.
+ *
+ * If your CSV has annotation rows above the real header, use
+ * --skip-lines N to skip them.
  *
  * Usage:
- *   npm run import-leads -- --client "Client Name" --csv ./leads.csv
- *   npm run import-leads -- --client "Client Name" --csv ./leads.csv --dry-run
+ *   npm run import-leads -- --client "Name" --csv ./leads.csv
+ *   npm run import-leads -- --client "Name" --csv ./leads.csv --dry-run
+ *   npm run import-leads -- --client "Name" --csv ./leads.csv \
+ *     --skip-lines 2 --fields "Business,Type,Area,Rating,Reviews,Signal / notes,Owner / contact name" \
+ *     --source "houston-med-spas"
  *
  * Requires NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY in
  * .env.local. Dedupes against existing leads for the same client
- * (by raw_input), so re-running the same CSV is safe.
+ * (by raw_input) so re-running the same CSV is safe.
  */
 
 import "dotenv/config";
@@ -23,7 +34,7 @@ import { parseArgs } from "node:util";
 import { parse } from "csv-parse/sync";
 import { getSupabaseAdmin } from "../lib/supabase";
 
-type CsvRow = { raw_input?: string; source?: string; [k: string]: string | undefined };
+type CsvRow = Record<string, string | undefined>;
 
 async function main() {
   const { values } = parseArgs({
@@ -31,13 +42,23 @@ async function main() {
       client: { type: "string" },
       csv: { type: "string" },
       "dry-run": { type: "boolean", default: false },
+      "skip-lines": { type: "string", default: "0" },
+      fields: { type: "string" },
+      source: { type: "string" },
     },
   });
 
   if (!values.client || !values.csv) {
     console.error(
-      'Usage: npm run import-leads -- --client "<name>" --csv <path> [--dry-run]',
+      'Usage: npm run import-leads -- --client "<name>" --csv <path> ' +
+        "[--skip-lines N] [--fields \"col1,col2,...\"] [--source <str>] [--dry-run]",
     );
+    process.exit(1);
+  }
+
+  const skipLines = Number.parseInt(values["skip-lines"] ?? "0", 10);
+  if (!Number.isFinite(skipLines) || skipLines < 0) {
+    console.error("--skip-lines must be a non-negative integer.");
     process.exit(1);
   }
 
@@ -59,24 +80,55 @@ async function main() {
     process.exit(1);
   }
 
-  const raw = fs.readFileSync(values.csv, "utf-8");
-  const records: CsvRow[] = parse(raw, {
+  const rawFile = fs.readFileSync(values.csv, "utf-8");
+  const dropped =
+    skipLines > 0 ? rawFile.split(/\r?\n/).slice(skipLines).join("\n") : rawFile;
+
+  const records: CsvRow[] = parse(dropped, {
     columns: true,
     skip_empty_lines: true,
     trim: true,
+    relax_column_count: true,
   });
 
   if (records.length === 0) {
-    console.log("CSV has no rows.");
+    console.log("CSV has no data rows after skipping.");
     return;
   }
-  if (!("raw_input" in records[0])) {
-    console.error(
-      'CSV must have a "raw_input" column (and optionally a "source" column).',
-    );
-    console.error("Found columns:", Object.keys(records[0]).join(", "));
-    process.exit(1);
+
+  const headers = Object.keys(records[0]);
+  const hasSimpleShape = headers.includes("raw_input");
+
+  let selectedFields: string[] | null = null;
+  if (!hasSimpleShape) {
+    if (values.fields) {
+      selectedFields = values.fields.split(",").map((s) => s.trim());
+      const missing = selectedFields.filter((f) => !headers.includes(f));
+      if (missing.length > 0) {
+        console.error(
+          `--fields references columns not in CSV: ${missing.join(", ")}`,
+        );
+        console.error("Available columns:", headers.join(", "));
+        process.exit(1);
+      }
+    } else {
+      selectedFields = headers;
+    }
   }
+
+  const buildRawInput = (r: CsvRow): string => {
+    if (hasSimpleShape) return (r.raw_input ?? "").trim();
+    const parts: string[] = [];
+    for (const f of selectedFields ?? []) {
+      const v = r[f];
+      if (v && v.trim().length > 0) parts.push(`${f}: ${v.trim()}`);
+    }
+    return parts.join(" | ");
+  };
+
+  const withInput = records
+    .map((r) => ({ row: r, raw_input: buildRawInput(r) }))
+    .filter((x) => x.raw_input.length > 0);
 
   const { data: existingRows, error: existingErr } = await admin
     .from("leads")
@@ -88,15 +140,17 @@ async function main() {
   }
   const existingSet = new Set((existingRows ?? []).map((r) => r.raw_input));
 
-  const withInput = records.filter(
-    (r): r is Required<Pick<CsvRow, "raw_input">> & CsvRow =>
-      typeof r.raw_input === "string" && r.raw_input.length > 0,
-  );
-  const fresh = withInput.filter((r) => !existingSet.has(r.raw_input));
+  const fresh = withInput.filter((x) => !existingSet.has(x.raw_input));
   const dupes = withInput.length - fresh.length;
   const blank = records.length - withInput.length;
 
   console.log(`Client: ${client.name} (${client.id})`);
+  console.log(
+    `Shape: ${hasSimpleShape ? "simple (raw_input column)" : "rich (concatenated fields)"}`,
+  );
+  if (!hasSimpleShape && selectedFields) {
+    console.log(`Included fields: ${selectedFields.join(", ")}`);
+  }
   console.log(
     `CSV rows: ${records.length} total — ${blank} blank/no-input, ` +
       `${dupes} already in DB, ${fresh.length} new`,
@@ -108,10 +162,12 @@ async function main() {
   }
 
   console.log("\nFirst 3 new rows:");
-  for (const r of fresh.slice(0, 3)) {
+  for (const x of fresh.slice(0, 3)) {
     const preview =
-      r.raw_input.length > 120 ? r.raw_input.slice(0, 120) + "…" : r.raw_input;
-    console.log(`  [${r.source ?? "no-source"}] ${preview}`);
+      x.raw_input.length > 200 ? x.raw_input.slice(0, 200) + "…" : x.raw_input;
+    const src =
+      (hasSimpleShape ? x.row.source : undefined) ?? values.source ?? "no-source";
+    console.log(`  [${src}] ${preview}`);
   }
 
   if (values["dry-run"]) {
@@ -119,10 +175,11 @@ async function main() {
     return;
   }
 
-  const inserts = fresh.map((r) => ({
+  const inserts = fresh.map((x) => ({
     client_id: client.id,
-    source: r.source ?? null,
-    raw_input: r.raw_input,
+    source:
+      (hasSimpleShape ? x.row.source : undefined) ?? values.source ?? null,
+    raw_input: x.raw_input,
     status: "new" as const,
   }));
 
